@@ -783,6 +783,7 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
           <svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Respostas recebidas
           <span class="kb-pill" style="background:rgba(255,213,105,.14);color:var(--gold-2)" id="respCount">0</span>
+          <span class="kb-pill" id="syncTag" style="margin-left:auto;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase">local</span>
         </div>
         <div id="respLista"></div>
       </div>
@@ -995,12 +996,18 @@ function carregar() {
   if (!Array.isArray(estado.enviadas)) estado.enviadas = [];
 }
 
-/* >>> PONTO DE INTEGRAÇÃO — troque pelo addDoc do Firestore quando subir <<< */
+/* Gravação das respostas.
+   Sobrescrita pelo módulo do Firebase no fim do arquivo — este é o fallback
+   local, usado se o Firebase não carregar. */
 async function enviarRespostas(dados) {
   salvar();
-  console.log('[Nox] respostas prontas para envio:', dados);
+  console.log('[Nox] resposta salva localmente (Firebase indisponível):', dados);
   return true;
 }
+
+/* status de sincronização mostrado na caixa de respostas */
+let syncStatus = 'local';
+function setSync(s) { syncStatus = s; montarRespostas(); }
 
 /* =====================================================================
    NAVEGAÇÃO
@@ -1134,6 +1141,13 @@ function montarRespostas() {
   if (!estado.enviadas.length) { box.style.display = 'none'; return; }
   box.style.display = 'block';
   document.getElementById('respCount').textContent = estado.enviadas.length;
+
+  const sel = document.getElementById('syncTag');
+  if (sel) {
+    if (syncStatus === 'online') { sel.textContent = 'sincronizado'; sel.style.color = 'var(--emerald)'; sel.style.background = 'rgba(52,211,153,.12)'; }
+    else if (syncStatus === 'erro') { sel.textContent = 'só neste aparelho'; sel.style.color = 'var(--red)'; sel.style.background = 'rgba(244,91,105,.12)'; }
+    else { sel.textContent = 'local'; sel.style.color = 'var(--text-secondary)'; sel.style.background = 'rgba(255,255,255,.06)'; }
+  }
 
   lista.innerHTML = estado.enviadas.slice().reverse().map((e, k) => {
     const media = e.respostas.reduce((s, r) => s + r.nota, 0) / e.respostas.length;
@@ -1415,6 +1429,97 @@ montarKanban();
 montarRespostas();
 irPara('enquete');
 if (estado.nome) document.getElementById('nome').value = estado.nome;
+
+/* ponte para o módulo do Firebase (carregado depois deste script) */
+window.noxApp = {
+  mesclarEnviadas(online) {
+    const chave = r => (r.nome || '') + '|' + (r.enviadoEm || '');
+    const mapa = new Map();
+    estado.enviadas.forEach(r => mapa.set(chave(r), r));
+    online.forEach(r => mapa.set(chave(r), r));
+    estado.enviadas = [...mapa.values()].sort((a, b) => new Date(a.enviadoEm) - new Date(b.enviadoEm));
+    salvar();
+    montarRespostas();
+  },
+  salvarLocal: salvar,
+  setSync: setSync
+};
+</script>
+
+<!-- ===================================================================
+     FIREBASE — grava e lê as respostas da enquete
+     Projeto: circle-nox · coleção: enquete_circle
+=================================================================== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import {
+    getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBbZSX61GQDpz-hgTFUxxbn002A-ZGo9v8",
+    authDomain: "circle-nox.firebaseapp.com",
+    projectId: "circle-nox",
+    storageBucket: "circle-nox.firebasestorage.app",
+    messagingSenderId: "814570801357",
+    appId: "1:814570801357:web:6448c375eba7dffb8a0184"
+  };
+
+  const COLECAO = "enquete_circle";
+
+  let db = null;
+  try {
+    db = getFirestore(initializeApp(firebaseConfig));
+  } catch (e) {
+    console.error("[Nox] Firebase não inicializou:", e);
+  }
+
+  /* ---- gravar ---- */
+  window.enviarRespostas = async (dados) => {
+    window.noxApp.salvarLocal();
+    if (!db) { window.noxApp.setSync("erro"); return false; }
+    try {
+      await addDoc(collection(db, COLECAO), {
+        nome: dados.nome,
+        enviadoEm: dados.enviadoEm,
+        respostas: dados.respostas,
+        criadoEm: serverTimestamp()
+      });
+      console.log("[Nox] resposta gravada no Firebase");
+      window.noxApp.setSync("online");
+      return true;
+    } catch (e) {
+      console.error("[Nox] falha ao gravar no Firebase:", e);
+      window.noxApp.setSync("erro");
+      alert("Sua resposta foi salva neste aparelho, mas não subiu para a nuvem.\nAvise a Nox para não perdermos ela.");
+      return false;
+    }
+  };
+
+  /* ---- ler todas ---- */
+  window.carregarRespostasOnline = async () => {
+    if (!db) return;
+    try {
+      const snap = await getDocs(query(collection(db, COLECAO), orderBy("criadoEm", "asc")));
+      const lista = [];
+      snap.forEach(d => {
+        const v = d.data();
+        lista.push({
+          nome: v.nome || "sem nome",
+          enviadoEm: v.enviadoEm || (v.criadoEm?.toDate ? v.criadoEm.toDate().toISOString() : new Date().toISOString()),
+          respostas: Array.isArray(v.respostas) ? v.respostas : []
+        });
+      });
+      window.noxApp.mesclarEnviadas(lista);
+      window.noxApp.setSync("online");
+      console.log("[Nox] " + lista.length + " resposta(s) carregada(s) do Firebase");
+    } catch (e) {
+      console.warn("[Nox] não foi possível ler as respostas online:", e.code || e.message);
+      window.noxApp.setSync("erro");
+    }
+  };
+
+  window.carregarRespostasOnline();
 </script>
 
 </body>
