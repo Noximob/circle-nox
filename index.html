@@ -14,7 +14,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap');
 
-/* ============ design system Nox (do CRM) ============ */
 :root {
   --bg-primary: #0b0c11;
   --bg-card: #14161d;
@@ -36,7 +35,6 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
 html, body { height: 100%; }
 
 body {
@@ -50,8 +48,7 @@ body {
 }
 
 .bg-particles {
-  position: relative;
-  min-height: 100vh;
+  position: relative; min-height: 100vh;
   background-color: #0a0a0e;
   background-image:
     radial-gradient(1000px 640px at 100% -10%, rgba(255, 30, 86, 0.11) 0%, transparent 55%),
@@ -60,8 +57,7 @@ body {
   background-repeat: no-repeat;
 }
 .bg-particles::before {
-  content: '';
-  position: fixed; inset: 0; pointer-events: none;
+  content: ''; position: fixed; inset: 0; pointer-events: none;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -70,317 +66,163 @@ body {
   mask-image: radial-gradient(1100px 760px at 28% 18%, black, transparent 78%);
 }
 .bg-particles::after {
-  content: '';
-  position: fixed; inset: 0; pointer-events: none;
-  opacity: 0.045;
+  content: ''; position: fixed; inset: 0; pointer-events: none; opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
 }
 
-.al-display { font-family: 'Rajdhani', 'Inter', system-ui, sans-serif; }
 .gx-line { height: 2px; background: linear-gradient(90deg, #FF1E56, rgba(255, 30, 86, 0)); }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 30, 86, 0.25); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 30, 86, 0.4); }
-
-button, input, textarea { font-family: inherit; color: inherit; }
-button { cursor: pointer; background: none; border: none; }
-
 ::selection { background: rgba(255,30,86,.35); color: #fff; }
+
+button, input, textarea, select { font-family: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: none; }
 button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(255,30,86,.55); outline-offset: 2px; }
 
 @keyframes fade-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 .animate-fade-in { animation: fade-in .4s ease-out; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 
-/* ============ sidebar rail ============ */
+/* sidebar */
 .rail { position: fixed; left: 0; top: 0; bottom: 0; z-index: 50; width: 60px; transition: width .2s; display: none; }
 @media (min-width: 1024px) { .rail { display: block; } }
 .rail:hover { width: 196px; }
-
 .rail-in {
-  height: 100%;
-  display: flex; flex-direction: column; min-height: 0;
-  background: rgba(13, 13, 18, 0.95);
-  backdrop-filter: blur(12px);
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
-  overflow: hidden;
+  height: 100%; display: flex; flex-direction: column; min-height: 0;
+  background: rgba(13, 13, 18, 0.95); backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255, 255, 255, 0.06); overflow: hidden;
 }
-
 .rail-logo { height: 52px; display: flex; align-items: center; gap: 10px; padding: 0 14px; flex-shrink: 0; }
-
 .logo-n {
-  position: relative;
-  display: grid; place-items: center;
-  width: 32px; height: 32px; flex-shrink: 0;
-  border-radius: 999px;
+  position: relative; display: grid; place-items: center;
+  width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px;
   border: 2px solid var(--pink-2);
   box-shadow: 0 0 14px rgba(255,30,86,.55), inset 0 0 10px rgba(255,30,86,.22);
   transition: box-shadow .2s;
 }
 .rail-logo:hover .logo-n { box-shadow: 0 0 22px rgba(255,30,86,.8), inset 0 0 12px rgba(255,30,86,.35); }
-.logo-n b {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 14px; font-weight: 700;
-  color: var(--pink-2); line-height: 1;
-  text-shadow: 0 0 10px rgba(255,30,86,.85);
-}
-
-.rail-nome {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 13px; font-weight: 700;
-  color: #fff; text-transform: uppercase; letter-spacing: .18em;
-  white-space: nowrap;
-  opacity: 0; transition: opacity .2s;
-}
+.logo-n b { font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; color: var(--pink-2); line-height: 1; text-shadow: 0 0 10px rgba(255,30,86,.85); }
+.rail-nome { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .18em; white-space: nowrap; opacity: 0; transition: opacity .2s; }
 .rail:hover .rail-nome { opacity: 1; }
-
 .rail-div { margin: 0 14px; opacity: .3; flex-shrink: 0; }
-
 .rail-nav { flex: 1; padding: 8px 10px 10px; overflow-y: auto; overflow-x: hidden; min-height: 0; }
-
 .rail-grupo { margin-top: 10px; }
 .rail-grupo:first-child { margin-top: 0; }
-.rail-grupo-t {
-  padding-left: 10px; height: 13px; margin-bottom: 3px;
-  font-size: 8.5px; font-weight: 800;
-  text-transform: uppercase; letter-spacing: .2em;
-  color: rgba(255,255,255,.25);
-  white-space: nowrap;
-  opacity: 0; transition: opacity .2s;
-}
+.rail-grupo-t { padding-left: 10px; height: 13px; margin-bottom: 3px; font-size: 8.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .2em; color: rgba(255,255,255,.25); white-space: nowrap; opacity: 0; transition: opacity .2s; }
 .rail:hover .rail-grupo-t { opacity: 1; }
-
 .rail-item {
-  position: relative;
-  display: flex; align-items: center; gap: 11px;
-  width: 100%;
-  padding: 7px 8px 7px 10px; margin-bottom: 2px;
-  border-radius: 8px;
-  font-size: 12px; font-weight: 600;
-  color: var(--text-secondary);
-  transition: all .2s;
-  text-align: left;
+  position: relative; display: flex; align-items: center; gap: 11px; width: 100%;
+  padding: 7px 8px 7px 10px; margin-bottom: 2px; border-radius: 8px;
+  font-size: 12px; font-weight: 600; color: var(--text-secondary); transition: all .2s; text-align: left;
 }
 .rail-item:hover { background: rgba(255,255,255,.04); color: #fff; }
 .rail-item.on { background: rgba(255,255,255,.05); color: #fff; }
-.rail-item.on::before {
-  content: '';
-  position: absolute; left: -10px; top: 50%; transform: translateY(-50%);
-  height: 22px; width: 3px;
-  border-radius: 0 3px 3px 0;
-  background: var(--pink);
-  box-shadow: 0 0 12px var(--pink);
-}
+.rail-item.on::before { content: ''; position: absolute; left: -10px; top: 50%; transform: translateY(-50%); height: 22px; width: 3px; border-radius: 0 3px 3px 0; background: var(--pink); box-shadow: 0 0 12px var(--pink); }
 .rail-item svg { width: 18px; height: 18px; flex-shrink: 0; opacity: .7; transition: all .2s; }
 .rail-item:hover svg { opacity: 1; filter: drop-shadow(0 0 6px currentColor); }
 .rail-item.on svg { opacity: 1; filter: drop-shadow(0 0 7px currentColor); }
-.rail-item span { white-space: nowrap; opacity: 0; transition: opacity .2s; overflow: hidden; text-overflow: ellipsis; }
-.rail:hover .rail-item span { opacity: 1; }
-
-/* rodapé: marca da Circle */
+.rail-item span.txt { white-space: nowrap; opacity: 0; transition: opacity .2s; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+.rail:hover .rail-item span.txt { opacity: 1; }
+.rail-item .lock { font-size: 9px; opacity: 0; transition: opacity .2s; flex-shrink: 0; }
+.rail:hover .rail-item .lock { opacity: .55; }
 .rail-foot { flex-shrink: 0; padding: 9px 10px; border-top: 1px solid rgba(255,255,255,.06); }
 .circle-brand { display: flex; align-items: center; gap: 10px; padding: 4px 6px; }
-.logo-circle {
-  position: relative;
-  width: 28px; height: 28px; flex-shrink: 0;
-  border-radius: 999px;
-  border: 2px solid var(--circle);
-  box-shadow: 0 0 10px rgba(255,184,28,.3), inset 0 0 6px rgba(255,184,28,.12);
-}
+.logo-circle { position: relative; width: 28px; height: 28px; flex-shrink: 0; border-radius: 999px; border: 2px solid var(--circle); box-shadow: 0 0 10px rgba(255,184,28,.3), inset 0 0 6px rgba(255,184,28,.12); }
 .circle-info { min-width: 0; opacity: 0; transition: opacity .2s; line-height: 1.15; }
 .rail:hover .circle-info { opacity: 1; }
-.circle-info b { display: block; font-size: 13px; font-weight: 700; color: #fff; letter-spacing: .01em; }
-.circle-info i {
-  display: inline-block; font-style: normal;
-  font-size: 7.5px; color: var(--circle);
-  font-weight: 800; text-transform: uppercase; letter-spacing: .22em;
-  border-top: 2px solid var(--circle);
-  padding-top: 2px; margin-top: 2px;
-}
+.circle-info b { display: block; font-size: 13px; font-weight: 700; color: #fff; }
+.circle-info i { display: inline-block; font-style: normal; font-size: 7.5px; color: var(--circle); font-weight: 800; text-transform: uppercase; letter-spacing: .22em; border-top: 2px solid var(--circle); padding-top: 2px; margin-top: 2px; }
 
-/* ============ topbar + drawer (mobile) ============ */
-.mtop {
-  display: flex;
-  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  height: 52px;
-  align-items: center; gap: 8px;
-  padding: 0 12px 0 4px;
-  background: rgba(18, 16, 26, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
+/* topbar + drawer */
+.mtop { display: flex; position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: 52px; align-items: center; gap: 8px; padding: 0 12px 0 4px; background: rgba(18, 16, 26, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,.08); }
 @media (min-width: 1024px) { .mtop { display: none; } }
-
-.mtop-btn {
-  display: grid; place-items: center;
-  width: 42px; height: 42px; border-radius: 8px;
-  color: var(--text-secondary);
-  transition: all .15s;
-}
+.mtop-btn { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 8px; color: var(--text-secondary); transition: all .15s; }
 .mtop-btn:active { transform: scale(.96); }
 .mtop-btn:hover { color: #fff; background: rgba(255,255,255,.06); }
 .mtop-logo { display: flex; align-items: center; gap: 9px; min-width: 0; }
 .mtop-logo .logo-n { width: 28px; height: 28px; }
 .mtop-logo .logo-n b { font-size: 12px; }
 .mtop-nome { font-family: 'Rajdhani', sans-serif; font-size: 12.5px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .18em; white-space: nowrap; }
-
 .drawer-wrap { position: fixed; inset: 0; z-index: 60; display: none; }
 .drawer-wrap.open { display: block; }
 .drawer-bg { position: absolute; inset: 0; background: rgba(0,0,0,.7); backdrop-filter: blur(3px); }
-.drawer {
-  position: absolute; left: 0; top: 0; bottom: 0;
-  width: 264px;
-  background: #12101a;
-  display: flex; flex-direction: column; min-height: 0;
-  box-shadow: 0 24px 80px -24px rgba(0,0,0,.9);
-}
-.drawer::after {
-  content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 2px;
-  background: linear-gradient(180deg, #FF1E56, transparent);
-  pointer-events: none;
-}
+.drawer { position: absolute; left: 0; top: 0; bottom: 0; width: 264px; background: #12101a; display: flex; flex-direction: column; min-height: 0; box-shadow: 0 24px 80px -24px rgba(0,0,0,.9); }
+.drawer::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #FF1E56, transparent); pointer-events: none; }
 .drawer-head { height: 52px; display: flex; align-items: center; gap: 9px; padding: 0 8px 0 14px; flex-shrink: 0; }
 .drawer-head .x { margin-left: auto; }
 .drawer-nav { flex: 1; padding: 8px 12px; overflow-y: auto; }
-.drawer-nav .rail-grupo-t { opacity: 1; }
-.drawer-nav .rail-item span { opacity: 1; }
+.drawer-nav .rail-grupo-t, .drawer-nav .rail-item span.txt, .drawer-nav .rail-item .lock { opacity: 1; }
 .drawer-nav .rail-item.on::before { left: -12px; }
 .drawer-foot { flex-shrink: 0; padding: 9px 12px; border-top: 1px solid rgba(255,255,255,.06); }
 .drawer-foot .circle-info { opacity: 1; }
 
-/* ============ conteúdo ============ */
+/* conteúdo */
 .main { padding: 18px 14px 70px; }
 @media (min-width: 1024px) { .main { margin-left: 60px; padding: 20px 26px 70px; } }
 @media (max-width: 1023.5px) { .main { padding-top: 66px; } }
-
 .page { max-width: 1020px; margin: 0 auto; display: none; }
 .page.on { display: block; }
-
 .page-head { margin-bottom: 14px; }
-.page-eyebrow {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .24em;
-  color: var(--pink-soft);
-  margin-bottom: 3px;
-}
-.page-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: #fff; text-transform: uppercase; letter-spacing: .07em;
-  line-height: 1.05;
-}
+.page-eyebrow { font-family: 'Rajdhani', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .24em; color: var(--pink-soft); margin-bottom: 3px; }
+.page-title { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .07em; line-height: 1.05; }
 .page-sub { color: var(--text-secondary); font-size: 12px; margin-top: 4px; max-width: 76ch; }
 .page-head .gx-line { margin-top: 10px; opacity: .45; }
 
-.card {
-  position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 13px;
-  padding: 16px;
-  overflow: hidden;
-}
+.card { position: relative; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 13px; padding: 16px; overflow: hidden; }
 .card.topline::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 2px; background: linear-gradient(90deg, #FF1E56, rgba(255,30,86,0)); opacity: .55; }
-.card.topline-gold::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 2px; background: linear-gradient(90deg, #E8C547, rgba(232,197,71,0)); opacity: .65; }
 
-.sec-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 12px; font-weight: 700;
-  color: #fff; text-transform: uppercase; letter-spacing: .14em;
-  display: flex; align-items: center; gap: 7px;
-  margin-bottom: 10px;
-}
+.sec-title { font-family: 'Rajdhani', sans-serif; font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .14em; display: flex; align-items: center; gap: 7px; margin-bottom: 10px; flex-wrap: wrap; }
 .sec-title svg { width: 14px; height: 14px; }
 .ic-pink { color: var(--pink-soft); filter: drop-shadow(0 0 7px rgba(255,30,86,.5)); }
 .ic-gold { color: var(--gold-2); filter: drop-shadow(0 0 7px rgba(232,197,71,.5)); }
 
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-  padding: 8px 16px; border-radius: 9px;
-  font-size: 12.5px; font-weight: 700;
-  transition: all .18s;
-}
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 8px 16px; border-radius: 9px; font-size: 12.5px; font-weight: 700; transition: all .18s; }
 .btn-pink { background: var(--pink); color: #fff; box-shadow: 0 0 16px rgba(255,30,86,.28); }
 .btn-pink:hover { background: #e0164a; box-shadow: 0 0 24px rgba(255,30,86,.42); }
 .btn-pink:active { transform: scale(.98); }
 .btn-ghost { background: rgba(255,255,255,.04); color: var(--text-secondary); border: 1px solid rgba(255,255,255,.1); }
 .btn-ghost:hover { background: rgba(255,255,255,.08); color: #fff; }
+.btn-danger { background: rgba(244,91,105,.1); color: var(--red); border: 1px solid rgba(244,91,105,.3); }
+.btn-danger:hover { background: rgba(244,91,105,.2); }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn-sm { padding: 5px 11px; font-size: 11.5px; border-radius: 7px; }
 
-.inp, .ta {
-  width: 100%;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 9px;
-  padding: 9px 12px;
-  font-size: 13px;
-  color: var(--text-primary);
-  outline: none;
-  transition: border-color .18s, background .18s, box-shadow .18s;
-}
+.inp, .ta { width: 100%; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.1); border-radius: 9px; padding: 9px 12px; font-size: 13px; color: var(--text-primary); outline: none; transition: border-color .18s, background .18s, box-shadow .18s; }
 .inp:focus, .ta:focus { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(255,30,86,.13); background: rgba(255,255,255,.045); }
 .inp::placeholder, .ta::placeholder { color: rgba(156,163,176,.5); }
 .ta { min-height: 66px; resize: vertical; line-height: 1.5; }
+select.inp { cursor: pointer; }
 @media (max-width: 640px) { .inp, .ta { font-size: 16px; } }
 
 .lbl { display: block; font-size: 11px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
-
 .err { color: var(--red); font-size: 11.5px; margin-top: 6px; display: none; }
 .err.on { display: block; }
 
-/* ============ enquete ============ */
+/* enquete */
 .prog { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .prog-track { flex: 1; height: 3px; background: rgba(255,255,255,.07); border-radius: 99px; overflow: hidden; }
 .prog-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #FF1E56, #FF5C7E); border-radius: 99px; box-shadow: 0 0 10px rgba(255,30,86,.5); transition: width .35s cubic-bezier(.4,0,.2,1); }
 .prog-txt { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--text-secondary); text-transform: uppercase; white-space: nowrap; }
-
 .passo { display: none; }
 .passo.on { display: block; animation: fade-in .35s ease-out; }
-
-/* pergunta em duas colunas: entrega | avaliação — cabe numa tela */
 .passo-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
 @media (min-width: 920px) { .passo-grid { grid-template-columns: 1.08fr 1fr; gap: 24px; } }
-
 .passo-titulo { font-family: 'Rajdhani', sans-serif; font-size: 17px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .06em; line-height: 1; margin: 2px 0 4px; }
 .passo-intro { font-size: 11.5px; color: var(--text-secondary); margin-bottom: 10px; }
 
 .gridval { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-.valcel {
-  background: rgba(255,255,255,.025);
-  border: 1px solid rgba(255,255,255,.07);
-  border-radius: 10px;
-  padding: 10px 11px;
-}
-.valcel b {
-  font-family: 'Rajdhani', sans-serif;
-  display: block;
-  font-size: 14.5px; font-weight: 700;
-  color: #fff; text-transform: uppercase; letter-spacing: .07em;
-  line-height: 1;
-  margin-bottom: 3px;
-}
+.valcel { background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.07); border-radius: 10px; padding: 10px 11px; }
+.valcel b { font-family: 'Rajdhani', sans-serif; display: block; font-size: 14.5px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .07em; line-height: 1; margin-bottom: 3px; }
 .valcel small { display: block; font-size: 10.5px; color: var(--pink-hi); line-height: 1.35; }
 
-.frase-hero {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 16.5px; font-weight: 700;
-  color: #fff;
-  line-height: 1.3;
-  text-wrap: balance;
-}
+.frase-hero { font-family: 'Rajdhani', sans-serif; font-size: 16.5px; font-weight: 700; color: #fff; line-height: 1.3; text-wrap: balance; }
 .frase-hero em { font-style: normal; color: var(--pink-soft); text-shadow: 0 0 14px rgba(255,30,86,.35); }
 
 .regua { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; max-width: 340px; }
-.nota {
-  padding: 7px 2px 6px;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,.1);
-  background: rgba(255,255,255,.03);
-  text-align: center;
-  transition: all .15s;
-}
+.nota { padding: 7px 2px 6px; border-radius: 8px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); text-align: center; transition: all .15s; }
 .nota:hover { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.2); }
 .nota b { display: block; font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; line-height: 1; }
 .nota small { display: block; font-size: 8px; color: var(--text-secondary); margin-top: 2px; }
@@ -388,46 +230,20 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
 .nota.sel b { color: var(--pink-soft); text-shadow: 0 0 10px rgba(255,30,86,.55); }
 .nota.sel small { color: var(--pink-hi); }
 
-.acoes { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-
-.check-ok {
-  width: 40px; height: 40px; border-radius: 999px;
-  background: rgba(52,211,153,.12);
-  border: 1px solid rgba(52,211,153,.35);
-  color: var(--emerald);
-  display: grid; place-items: center;
-  font-size: 18px;
-  box-shadow: 0 0 18px rgba(52,211,153,.22);
-  margin-bottom: 10px;
-}
-
+.acoes { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
+.check-ok { width: 40px; height: 40px; border-radius: 999px; background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.35); color: var(--emerald); display: grid; place-items: center; font-size: 18px; box-shadow: 0 0 18px rgba(52,211,153,.22); margin-bottom: 10px; }
 .resumo-l { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.06); font-size: 12px; }
 .resumo-l:last-child { border-bottom: none; }
 .resumo-l span { color: var(--text-secondary); }
 .resumo-l b { font-family: 'Rajdhani', sans-serif; font-size: 14px; color: var(--pink-soft); }
 
-/* ============ MVV ============ */
+/* mvv */
 .stack { display: flex; flex-direction: column; gap: 10px; }
-
 .mv-linha { display: grid; grid-template-columns: 84px 1fr; gap: 14px; align-items: start; padding: 13px 16px; }
-.mv-linha .mv-k {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .2em; text-transform: uppercase;
-  color: var(--pink-soft);
-  padding-top: 3px;
-}
+.mv-linha .mv-k { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--pink-soft); padding-top: 3px; }
 @media (max-width: 560px) { .mv-linha { grid-template-columns: 1fr; gap: 4px; } }
-
-/* valores: acordeão compacto */
 .valx { border: 1px solid rgba(255,255,255,.07); border-radius: 10px; background: rgba(255,255,255,.02); overflow: hidden; }
-.valx-h {
-  width: 100%;
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 12px;
-  text-align: left;
-  transition: background .15s;
-}
+.valx-h { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; text-align: left; transition: background .15s; }
 .valx-h:hover { background: rgba(255,255,255,.03); }
 .valx-h .n { font-family: 'Rajdhani', sans-serif; font-size: 10px; font-weight: 700; color: var(--pink-soft); }
 .valx-h b { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .07em; }
@@ -437,7 +253,6 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
 .valx-b { display: none; padding: 2px 12px 12px; border-top: 1px solid rgba(255,255,255,.05); }
 .valx.open .valx-b { display: block; }
 @media (max-width: 640px) { .valx-h i { display: none; } }
-
 .duas-col { display: grid; grid-template-columns: 1fr; gap: 10px; padding-top: 10px; }
 @media (min-width: 680px) { .duas-col { grid-template-columns: 1fr 1fr; gap: 16px; } }
 .mini-l .t { font-family: 'Rajdhani', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 5px; }
@@ -451,7 +266,7 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
 .fim-l { margin-top: 9px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.06); font-size: 11.5px; color: var(--text-secondary); }
 .fim-l b { color: var(--red); font-weight: 700; }
 
-/* ============ metas ============ */
+/* metas */
 .metas-row { display: grid; grid-template-columns: 1fr 1fr 1fr; }
 .meta-cel { padding: 14px 10px; text-align: center; border-right: 1px solid rgba(255,255,255,.06); }
 .meta-cel:last-child { border-right: none; }
@@ -467,161 +282,75 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
   .meta-cel { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
   .meta-cel:last-child { border-bottom: none; }
 }
-
 .quote-l { border-left: 2px solid var(--pink); padding: 1px 0 1px 11px; margin-bottom: 9px; }
 .quote-l:last-child { margin-bottom: 0; }
 .quote-l p { font-size: 11.5px; color: var(--text-primary); font-style: italic; line-height: 1.45; }
 .quote-l b { display: block; font-family: 'Rajdhani', sans-serif; font-size: 9px; letter-spacing: .14em; color: var(--text-secondary); margin-top: 2px; }
 
-/* ============ kanban ============ */
+/* kanban */
 .kb-wrap { display: grid; grid-template-columns: 1fr; gap: 9px; }
 @media (min-width: 640px) { .kb-wrap { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1000px) { .kb-wrap { grid-template-columns: repeat(4, 1fr); } }
-
-.kb-col {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 11px;
-  padding: 9px 8px 8px;
-  display: flex; flex-direction: column;
-  min-height: 150px;
-}
+.kb-col { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 11px; padding: 9px 8px 8px; display: flex; flex-direction: column; min-height: 150px; }
 .kb-head { display: flex; align-items: center; gap: 7px; padding: 0 3px 7px; }
 .kb-dot { width: 7px; height: 7px; border-radius: 99px; flex-shrink: 0; box-shadow: 0 0 7px currentColor; }
-.kb-title {
-  flex: 1;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 12px; font-weight: 700;
-  color: #fff; text-transform: uppercase; letter-spacing: .09em;
-  outline: none; border-radius: 5px; padding: 1px 5px;
-  white-space: nowrap; overflow: hidden;
-}
+.kb-title { flex: 1; font-family: 'Rajdhani', sans-serif; font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .09em; outline: none; border-radius: 5px; padding: 1px 5px; white-space: nowrap; overflow: hidden; }
 .kb-title:focus { background: rgba(255,255,255,.06); box-shadow: 0 0 0 2px rgba(255,30,86,.35); }
-.kb-count { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; color: var(--text-secondary); }
-
+.kb-pill { font-family: 'Rajdhani', sans-serif; font-size: 10.5px; font-weight: 700; padding: 1px 8px; border-radius: 99px; flex-shrink: 0; }
+.kb-delcol { width: 18px; height: 18px; border-radius: 5px; display: grid; place-items: center; color: rgba(156,163,176,.45); font-size: 12px; line-height: 1; opacity: 0; transition: all .15s; flex-shrink: 0; }
+.kb-col:hover .kb-delcol { opacity: 1; }
+.kb-delcol:hover { color: var(--red); background: rgba(244,91,105,.12); }
 .kb-cards { flex: 1; display: flex; flex-direction: column; gap: 5px; min-height: 44px; border-radius: 8px; transition: background .15s; padding: 1px; }
 .kb-col.dragover .kb-cards { background: rgba(255,30,86,.06); outline: 1px dashed rgba(255,30,86,.4); }
-
-.kb-card {
-  position: relative;
-  background: var(--surface-hover);
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 8px;
-  padding: 7px 24px 7px 9px;
-  cursor: pointer;
-  transition: border-color .15s, background .15s, opacity .15s, transform .15s;
-}
+.kb-card { position: relative; background: var(--surface-hover); border: 1px solid rgba(255,255,255,.06); border-radius: 8px; padding: 7px 24px 7px 9px; cursor: pointer; transition: border-color .15s, background .15s, opacity .15s, transform .15s; }
 .kb-card:hover { border-color: rgba(255,30,86,.3); background: #232734; transform: translateY(-1px); }
 .kb-card:active { cursor: grabbing; }
 .kb-card.dragging { opacity: .35; cursor: grabbing; }
 .kb-card b { display: block; font-size: 11.5px; font-weight: 600; color: var(--text-primary); line-height: 1.35; }
-.kb-card p {
-  font-size: 10.5px; color: var(--text-secondary); margin-top: 2px; line-height: 1.35;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-.kb-vazio {
-  border: 1px dashed rgba(255,255,255,.1);
-  border-radius: 8px;
-  padding: 12px 8px;
-  font-size: 10.5px; color: rgba(156,163,176,.5);
-  text-align: center;
-  pointer-events: none;
-}
-.kb-pill {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10.5px; font-weight: 700;
-  padding: 1px 8px; border-radius: 99px;
-  flex-shrink: 0;
-}
-.kb-card .del {
-  position: absolute; top: 4px; right: 4px;
-  width: 18px; height: 18px; border-radius: 5px;
-  display: grid; place-items: center;
-  color: rgba(156,163,176,.5);
-  font-size: 12px; line-height: 1;
-  opacity: 0; transition: all .15s;
-}
+.kb-card p { font-size: 10.5px; color: var(--text-secondary); margin-top: 2px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.kb-card .del { position: absolute; top: 4px; right: 4px; width: 18px; height: 18px; border-radius: 5px; display: grid; place-items: center; color: rgba(156,163,176,.5); font-size: 12px; line-height: 1; opacity: 0; transition: all .15s; }
 .kb-card:hover .del { opacity: 1; }
 .kb-card .del:hover { color: var(--red); background: rgba(244,91,105,.12); }
-
+.kb-vazio { border: 1px dashed rgba(255,255,255,.1); border-radius: 8px; padding: 12px 8px; font-size: 10.5px; color: rgba(156,163,176,.5); text-align: center; pointer-events: none; }
 .kb-add { display: flex; gap: 5px; margin-top: 7px; }
-.kb-add input {
-  flex: 1; min-width: 0;
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 7px;
-  padding: 5px 8px;
-  font-size: 11px;
-  outline: none;
-}
+.kb-add input { flex: 1; min-width: 0; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 7px; padding: 5px 8px; font-size: 11px; outline: none; }
 .kb-add input:focus { border-color: rgba(255,30,86,.5); }
-.kb-add button {
-  width: 28px; border-radius: 7px;
-  background: rgba(255,30,86,.14);
-  color: var(--pink-soft);
-  font-size: 15px; font-weight: 700;
-  transition: all .15s;
-}
+.kb-add button { width: 28px; border-radius: 7px; background: rgba(255,30,86,.14); color: var(--pink-soft); font-size: 15px; font-weight: 700; transition: all .15s; }
 .kb-add button:hover { background: rgba(255,30,86,.25); }
-
-.kb-hint { font-size: 11px; color: var(--text-secondary); margin-top: 10px; }
-
-.kb-delcol {
-  width: 18px; height: 18px; border-radius: 5px;
-  display: grid; place-items: center;
-  color: rgba(156,163,176,.45);
-  font-size: 12px; line-height: 1;
-  opacity: 0; transition: all .15s;
-  flex-shrink: 0;
-}
-.kb-col:hover .kb-delcol { opacity: 1; }
-.kb-delcol:hover { color: var(--red); background: rgba(244,91,105,.12); }
-
-.kb-newcol {
-  border: 1px dashed rgba(255,255,255,.13);
-  border-radius: 11px;
-  min-height: 150px;
-  display: grid; place-items: center;
-  gap: 6px;
-  color: var(--text-secondary);
-  transition: all .18s;
-  padding: 14px;
-}
+.kb-newcol { border: 1px dashed rgba(255,255,255,.13); border-radius: 11px; min-height: 150px; display: grid; place-items: center; gap: 6px; color: var(--text-secondary); transition: all .18s; padding: 14px; }
 .kb-newcol:hover { border-color: rgba(255,30,86,.45); background: rgba(255,30,86,.04); color: var(--pink-soft); }
 .kb-newcol .plus { font-size: 22px; line-height: 1; font-weight: 300; }
 .kb-newcol span { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.kb-hint { font-size: 11px; color: var(--text-secondary); margin-top: 10px; }
 
-/* ============ respostas recebidas ============ */
+/* modal */
+.modal-wrap { position: fixed; inset: 0; z-index: 70; display: none; align-items: center; justify-content: center; padding: 18px; }
+.modal-wrap.open { display: flex; }
+.modal-bg { position: absolute; inset: 0; background: rgba(0,0,0,.72); backdrop-filter: blur(4px); }
+.modal { position: relative; width: min(500px, 94vw); background: var(--bg-card); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 18px; box-shadow: 0 30px 90px -20px rgba(0,0,0,.9), 0 0 40px rgba(255,30,86,.07); animation: fade-in .25s ease-out; }
+.modal::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 2px; border-radius: 14px 14px 0 0; background: linear-gradient(90deg, #FF1E56, rgba(255,30,86,0)); opacity: .6; }
+.modal-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.modal-head .kb-dot { width: 8px; height: 8px; }
+.modal-head span { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-secondary); flex: 1; }
+.modal-x { width: 28px; height: 28px; border-radius: 7px; display: grid; place-items: center; color: var(--text-secondary); font-size: 15px; transition: all .15s; }
+.modal-x:hover { color: #fff; background: rgba(255,255,255,.07); }
+.modal .ta { min-height: 100px; }
+.modal-acoes { display: flex; gap: 8px; margin-top: 14px; }
+
+/* respostas */
 .resp { border: 1px solid rgba(255,255,255,.07); border-radius: 10px; background: rgba(255,255,255,.02); overflow: hidden; margin-bottom: 6px; }
 .resp:last-child { margin-bottom: 0; }
 .resp-h { width: 100%; display: flex; align-items: center; gap: 10px; padding: 9px 12px; text-align: left; transition: background .15s; }
 .resp-h:hover { background: rgba(255,255,255,.03); }
-.resp-av {
-  width: 24px; height: 24px; flex-shrink: 0; padding: 1.5px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #FF6B93, #FF1E56, #8B0F31);
-}
-.resp-av div {
-  width: 100%; height: 100%; border-radius: 999px;
-  background: #16090e;
-  display: grid; place-items: center;
-  color: var(--pink-hi); font-weight: 700; font-size: 10.5px;
-  font-family: 'Rajdhani', sans-serif;
-}
+.resp-av { width: 24px; height: 24px; flex-shrink: 0; padding: 1.5px; border-radius: 999px; background: linear-gradient(135deg, #FF6B93, #FF1E56, #8B0F31); }
+.resp-av div { width: 100%; height: 100%; border-radius: 999px; background: #16090e; display: grid; place-items: center; color: var(--pink-hi); font-weight: 700; font-size: 10.5px; font-family: 'Rajdhani', sans-serif; }
 .resp-h b { font-size: 12.5px; font-weight: 650; color: #fff; }
 .resp-h .quando { font-size: 10.5px; color: var(--text-secondary); }
-.resp-h .media {
-  margin-left: auto; flex-shrink: 0;
-  font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700;
-  color: var(--pink-soft);
-  background: rgba(255,30,86,.1);
-  padding: 1px 9px; border-radius: 99px;
-}
+.resp-h .media { margin-left: auto; flex-shrink: 0; font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; color: var(--pink-soft); background: rgba(255,30,86,.1); padding: 1px 9px; border-radius: 99px; }
 .resp-h .chev { color: var(--text-secondary); font-size: 9px; transition: transform .2s; flex-shrink: 0; }
 .resp.open .chev { transform: rotate(90deg); }
 .resp-b { display: none; padding: 4px 12px 11px; border-top: 1px solid rgba(255,255,255,.05); }
 .resp.open .resp-b { display: block; }
-
 .resp-item { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
 .resp-item:last-child { border-bottom: none; }
 .resp-item .top { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
@@ -630,52 +359,32 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
 .resp-item p { font-size: 11.5px; color: var(--text-secondary); line-height: 1.45; }
 .resp-item p.vazio { color: rgba(156,163,176,.4); font-style: italic; }
 
-/* ============ modal do card ============ */
-.modal-wrap {
-  position: fixed; inset: 0; z-index: 70;
-  display: none;
-  align-items: center; justify-content: center;
-  padding: 18px;
-}
-.modal-wrap.open { display: flex; }
-.modal-bg { position: absolute; inset: 0; background: rgba(0,0,0,.72); backdrop-filter: blur(4px); }
-.modal {
-  position: relative;
-  width: min(500px, 94vw);
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 30px 90px -20px rgba(0,0,0,.9), 0 0 40px rgba(255,30,86,.07);
-  animation: fade-in .25s ease-out;
-}
-.modal::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 2px; border-radius: 14px 14px 0 0; background: linear-gradient(90deg, #FF1E56, rgba(255,30,86,0)); opacity: .6; }
-.modal-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.modal-head .kb-dot { width: 8px; height: 8px; }
-.modal-head span {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--text-secondary);
-  flex: 1;
-}
-.modal-x {
-  width: 28px; height: 28px; border-radius: 7px;
-  display: grid; place-items: center;
-  color: var(--text-secondary);
-  font-size: 15px;
-  transition: all .15s;
-}
-.modal-x:hover { color: #fff; background: rgba(255,255,255,.07); }
-.modal .ta { min-height: 100px; }
-.modal-acoes { display: flex; gap: 8px; margin-top: 14px; }
-.btn-danger { background: rgba(244,91,105,.1); color: var(--red); border: 1px solid rgba(244,91,105,.3); }
-.btn-danger:hover { background: rgba(244,91,105,.2); }
+/* admin */
+.login-box { max-width: 340px; }
+.adm-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 780px) { .adm-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.adm-val { border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 12px; background: rgba(255,255,255,.02); margin-bottom: 8px; }
+.adm-val-h { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; flex-wrap: wrap; }
+.adm-val-h .n { font-family: 'Rajdhani', sans-serif; font-size: 10px; font-weight: 700; color: var(--pink-soft); }
+.adm-2 { display: grid; grid-template-columns: 1fr; gap: 9px; }
+@media (min-width: 700px) { .adm-2 { grid-template-columns: 1fr 1fr; gap: 14px; } }
+.adm-linha { display: flex; align-items: center; gap: 9px; padding: 8px 4px; border-bottom: 1px solid rgba(255,255,255,.05); }
+.adm-linha:last-child { border-bottom: none; }
+.adm-linha .info { flex: 1; min-width: 0; }
+.adm-linha .info b { display: block; font-size: 12.5px; color: #fff; }
+.adm-linha .info span { font-size: 10.5px; color: var(--text-secondary); }
+.adm-linha .nota-badge { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; color: var(--pink-soft); background: rgba(255,30,86,.1); padding: 1px 9px; border-radius: 99px; }
+.dica { font-size: 11px; color: var(--text-secondary); margin-top: 6px; line-height: 1.45; }
+.dica code { background: rgba(255,30,86,.12); color: var(--pink-hi); padding: 1px 5px; border-radius: 4px; font-size: 10.5px; }
+
+.toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--bg-card); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 10px 18px; font-size: 12.5px; font-weight: 600; box-shadow: 0 20px 50px -12px rgba(0,0,0,.9); z-index: 90; transition: transform .3s cubic-bezier(.16,1,.3,1), opacity .3s; opacity: 0; }
+.toast.on { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast.ok { border-color: rgba(52,211,153,.4); color: var(--emerald); }
+.toast.erro { border-color: rgba(244,91,105,.4); color: var(--red); }
 </style>
 
 <div class="bg-particles">
 
-  <!-- ======= SIDEBAR RAIL ======= -->
   <aside class="rail" id="rail">
     <div class="rail-in">
       <div class="rail-logo">
@@ -693,7 +402,6 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
     </div>
   </aside>
 
-  <!-- ======= TOPBAR (mobile) ======= -->
   <header class="mtop">
     <button class="mtop-btn" onclick="drawer(true)" aria-label="Abrir menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
@@ -706,7 +414,6 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
     <span class="logo-circle" style="width:26px;height:26px"></span>
   </header>
 
-  <!-- ======= DRAWER (mobile) ======= -->
   <div class="drawer-wrap" id="drawerWrap">
     <div class="drawer-bg" onclick="drawer(false)"></div>
     <div class="drawer">
@@ -728,10 +435,9 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
     </div>
   </div>
 
-  <!-- ======= CONTEÚDO ======= -->
   <main class="main">
 
-    <!-- ===== ENQUETE ===== -->
+    <!-- ENQUETE -->
     <section class="page" id="pg-enquete">
       <div class="page-head">
         <div class="page-eyebrow">Consultoria Circle · Encontro 02</div>
@@ -753,9 +459,7 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
             <input class="inp" type="text" id="nome" placeholder="Como você assina" autocomplete="name" onkeydown="if(event.key==='Enter')comecar()">
             <p class="err" id="errNome">Coloca o nome pra gente saber de quem é a resposta.</p>
           </div>
-          <div class="acoes">
-            <button class="btn btn-pink" onclick="comecar()">Começar</button>
-          </div>
+          <div class="acoes"><button class="btn btn-pink" onclick="comecar()">Começar</button></div>
         </div>
       </div>
 
@@ -770,14 +474,10 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
           <div class="passo-titulo" id="fimTitulo">Obrigado!</div>
           <p style="color:var(--text-secondary);font-size:12px;margin:6px 0 12px">Respostas registradas — elas guiam a pauta do próximo encontro.</p>
           <div id="fimResumo" style="max-width:360px"></div>
-          <div class="acoes">
-            <button class="btn btn-pink" onclick="baixarJSON()">Baixar respostas (JSON)</button>
-            <button class="btn btn-ghost" onclick="refazer()">Nova resposta</button>
-          </div>
+          <div class="acoes"><button class="btn btn-pink" onclick="refazer()">Nova resposta</button></div>
         </div>
       </div>
 
-      <!-- respostas recebidas -->
       <div class="card animate-fade-in" id="respBox" style="display:none;margin-top:10px">
         <div class="sec-title">
           <svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -789,25 +489,22 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
       </div>
     </section>
 
-    <!-- ===== MISSÃO, VISÃO E VALORES ===== -->
+    <!-- MVV -->
     <section class="page" id="pg-mvv">
       <div class="page-head">
         <div class="page-eyebrow">Institucional</div>
         <div class="page-title">Missão, Visão e Valores</div>
         <div class="gx-line"></div>
       </div>
-
       <div class="stack">
         <div class="card topline mv-linha animate-fade-in">
           <span class="mv-k">Missão</span>
-          <p class="frase-hero">Transformar o desejo de morar ou investir no litoral em uma decisão que o cliente <em>entenda</em>, <em>confie</em> e <em>não se arrependa</em>.</p>
+          <p class="frase-hero" id="mvvMissao"></p>
         </div>
-
         <div class="card topline mv-linha animate-fade-in">
           <span class="mv-k">Visão</span>
-          <p class="frase-hero">Ser a imobiliária <em>mais confiável</em> do litoral norte.</p>
+          <p class="frase-hero" id="mvvVisao"></p>
         </div>
-
         <div class="card animate-fade-in">
           <div class="sec-title"><svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Valores <span style="color:var(--text-secondary);font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:none">— clique para abrir o detalhe</span></div>
           <div id="mvvValores" class="stack" style="gap:6px"></div>
@@ -815,60 +512,100 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
       </div>
     </section>
 
-    <!-- ===== METAS ===== -->
+    <!-- METAS -->
     <section class="page" id="pg-metas">
       <div class="page-head">
         <div class="page-eyebrow">Institucional</div>
         <div class="page-title">Metas</div>
         <div class="gx-line"></div>
       </div>
-
       <div class="stack">
         <div class="card topline animate-fade-in" style="padding:0">
-          <div class="metas-row">
-            <div class="meta-cel">
-              <div class="meta-lbl">Onde estamos</div>
-              <div class="meta-big" data-count="28">R$ 28 mi</div>
-              <p class="meta-sub">VGV · últimos 12 meses</p>
-            </div>
-            <div class="meta-cel rosa">
-              <div class="meta-lbl">Em 12 meses</div>
-              <div class="meta-big" data-count="56">R$ 56 mi</div>
-              <p class="meta-sub">o primeiro passo: dobrar</p>
-            </div>
-            <div class="meta-cel ouro">
-              <div class="meta-lbl">Em 24 meses</div>
-              <div class="meta-big" data-count="100">R$ 100 mi</div>
-              <p class="meta-sub">onde queremos chegar</p>
-            </div>
-          </div>
+          <div class="metas-row" id="metasRow"></div>
         </div>
-
         <div class="card animate-fade-in">
           <div class="sec-title"><svg class="ic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg> O que norteia</div>
-          <div class="quote-l"><p>"Acho que vocês conseguem dobrar de faturamento."</p><b>00:56:02</b></div>
-          <div class="quote-l"><p>"Tudo o que é importante tem que ter uma meta. Toda meta tem que ser checada. E você só pode colocar a meta naquilo que você pode cobrar."</p><b>01:09:12</b></div>
-          <div class="quote-l"><p>"Tu já sabe fazer R$ 28 milhões, vamos para o próximo step. Qual é uma meta que seja ousada, mas que você consiga conquistar?"</p><b>01:59:34</b></div>
+          <div id="metasCitacoes"></div>
         </div>
       </div>
     </section>
 
-    <!-- ===== KANBAN ===== -->
+    <!-- KANBAN -->
     <section class="page" id="pg-kanban">
       <div class="page-head">
         <div class="page-eyebrow">Organização</div>
         <div class="page-title">Kanban</div>
-        <p class="page-sub">Arraste os cards entre colunas · clique no título da coluna para renomear.</p>
+        <p class="page-sub">Arraste os cards entre colunas · clique no nome da coluna para renomear.</p>
+        <div class="gx-line"></div>
+      </div>
+      <div class="kb-wrap" id="kbWrap"></div>
+      <p class="kb-hint">Clique num card para abrir título e descrição. As mudanças ficam salvas para todos.</p>
+    </section>
+
+    <!-- ADMIN -->
+    <section class="page" id="pg-admin">
+      <div class="page-head">
+        <div class="page-eyebrow">Restrito</div>
+        <div class="page-title">Administrador</div>
         <div class="gx-line"></div>
       </div>
 
-      <div class="kb-wrap" id="kbWrap"></div>
-      <p class="kb-hint">Clique num card para abrir título e descrição · arraste entre colunas · clique no nome da coluna para renomear · tudo fica salvo neste navegador.</p>
-    </section>
+      <div id="admLogin">
+        <div class="card topline animate-fade-in login-box">
+          <div class="sec-title"><svg class="ic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Acesso</div>
+          <label class="lbl" for="admSenha">Senha</label>
+          <input class="inp" type="password" id="admSenha" placeholder="••••••••" onkeydown="if(event.key==='Enter')entrarAdmin()">
+          <p class="err" id="admErr">Senha incorreta.</p>
+          <div class="acoes"><button class="btn btn-pink" id="admBtn" onclick="entrarAdmin()">Entrar</button></div>
+        </div>
+      </div>
 
+      <div id="admPainel" style="display:none">
+        <div class="stack">
+
+          <div class="card topline animate-fade-in">
+            <div class="sec-title">
+              <svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Respostas da enquete
+              <span class="kb-pill" style="background:rgba(255,213,105,.14);color:var(--gold-2)" id="admRespCount">0</span>
+              <button class="btn btn-ghost btn-sm" style="margin-left:auto" onclick="baixarJSON()">Baixar JSON</button>
+            </div>
+            <div id="admRespostas"></div>
+          </div>
+
+          <div class="card animate-fade-in">
+            <div class="sec-title"><svg class="ic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Missão e Visão</div>
+            <label class="lbl" for="edMissao">Missão</label>
+            <textarea class="ta" id="edMissao" style="min-height:70px"></textarea>
+            <label class="lbl" for="edVisao" style="margin-top:10px">Visão</label>
+            <textarea class="ta" id="edVisao" style="min-height:52px"></textarea>
+            <p class="dica">Para destacar em rosa, envolva a parte em asteriscos: <code>*mais confiável*</code></p>
+          </div>
+
+          <div class="card animate-fade-in">
+            <div class="sec-title"><svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Valores</div>
+            <div id="edValores"></div>
+            <p class="dica">Em "O que se cobra" e "Inadmissível", <strong>uma linha por item</strong>.</p>
+          </div>
+
+          <div class="card animate-fade-in">
+            <div class="sec-title"><svg class="ic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg> Metas</div>
+            <div class="adm-grid" id="edMetas"></div>
+            <label class="lbl" for="edCitacoes" style="margin-top:12px">Citações — uma por linha, no formato <code style="font-size:10px">texto | 00:00:00</code></label>
+            <textarea class="ta" id="edCitacoes" style="min-height:80px"></textarea>
+          </div>
+
+          <div class="acoes" style="margin-top:0">
+            <button class="btn btn-pink" onclick="salvarConteudoAdmin()">Salvar alterações</button>
+            <button class="btn btn-ghost" onclick="recarregarConteudo()">Descartar</button>
+            <button class="btn btn-ghost" onclick="restaurarPadrao()">Restaurar padrão</button>
+            <button class="btn btn-danger" style="margin-left:auto" onclick="sairAdmin()">Sair</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- ======= MODAL DO CARD ======= -->
   <div class="modal-wrap" id="modalWrap">
     <div class="modal-bg" onclick="fecharModal()"></div>
     <div class="modal">
@@ -887,63 +624,64 @@ button:focus-visible, [contenteditable]:focus-visible { outline: 2px solid rgba(
       </div>
     </div>
   </div>
+
+  <div class="toast" id="toast"></div>
 </div>
 
 <script>
-/* =====================================================================
-   DADOS
-===================================================================== */
-const VALORES = [
-  { w: 'Leais',       f: 'Perco a venda antes de perder a palavra.',
-    cobra: ['A verdade dita ao cliente antes que ele descubra', 'O sistema mostrando o que aconteceu de verdade', 'Problema falado na frente da pessoa', 'Cliente e negócio de colega respeitados'],
-    nao:   ['Omitir defeito para fechar', 'Prometer valorização como se fosse certa', 'Maquiar o funil', 'Desviar cliente · acertar por fora', 'Fofoca e reclamação de corredor'],
-    fim:   'Imediato — mentir para o cliente, desviar negócio, acertar por fora ou rachar o time. Sem segunda conversa.' },
-  { w: 'Ensináveis',  f: 'Mudo depois de ouvir.',
-    cobra: ['Ouvir a correção sem se defender', 'Pedir ajuda antes de errar, não depois', 'Aplicar o que foi ensinado — concordar não conta', 'Passar adiante o que aprendeu na rua'],
-    nao:   ['Achar que já sabe', 'Concordar com o feedback e não mudar nada', '"Faço do meu jeito" com o jeito sem resultado', 'Guardar informação para proteger posição'],
-    fim:   'Por repetição — receber a mesma correção três vezes e não mudar nada.' },
-  { w: 'Antecipados', f: 'Chego pronto antes da hora.',
-    cobra: ['Estudar o produto antes de o cliente perguntar', 'Material na mão antes da reunião', 'Responder antes de ser cobrado', 'Prospectar antes de faltar lead'],
-    nao:   ['Improvisar na frente do cliente', '"Depois eu confirmo" sobre o que era obrigação saber', 'Cliente cobrando resposta que era nossa', 'Só correr atrás com o funil seco'],
-    fim:   'Por repetição — chegar cru na frente do cliente de novo, depois de já ter sido avisado.' },
-  { w: 'Obstinados',  f: 'Não largo o que prometi.',
-    cobra: ['Meta perseguida até o último dia do trimestre', 'Voltar no cliente que disse não', 'Tentativa nova quando a anterior falhou', 'Ritmo mantido no mês em que aperta'],
-    nao:   ['Abandonar a meta no meio do caminho', 'Desistir no primeiro não', 'Desculpa no lugar de tentativa nova', 'Aceitar resultado ruim como normal'],
-    fim:   'Por repetição — parar de perseguir a meta assumida e transformar isso em rotina.' }
-];
+/* ===== conteúdo padrão ===== */
+const CONTEUDO_PADRAO = {
+  missao: 'Transformar o desejo de morar ou investir no litoral em uma decisão que o cliente *entenda*, *confie* e *não se arrependa*.',
+  visao: 'Ser a imobiliária *mais confiável* do litoral norte.',
+  valores: [
+    { w: 'Leais', f: 'Perco a venda antes de perder a palavra.',
+      cobra: ['A verdade dita ao cliente antes que ele descubra', 'O sistema mostrando o que aconteceu de verdade', 'Problema falado na frente da pessoa', 'Cliente e negócio de colega respeitados'],
+      nao: ['Omitir defeito para fechar', 'Prometer valorização como se fosse certa', 'Maquiar o funil', 'Desviar cliente · acertar por fora', 'Fofoca e reclamação de corredor'],
+      fim: 'Imediato — mentir para o cliente, desviar negócio, acertar por fora ou rachar o time. Sem segunda conversa.' },
+    { w: 'Ensináveis', f: 'Mudo depois de ouvir.',
+      cobra: ['Ouvir a correção sem se defender', 'Pedir ajuda antes de errar, não depois', 'Aplicar o que foi ensinado — concordar não conta', 'Passar adiante o que aprendeu na rua'],
+      nao: ['Achar que já sabe', 'Concordar com o feedback e não mudar nada', 'Faço do meu jeito com o jeito sem resultado', 'Guardar informação para proteger posição'],
+      fim: 'Por repetição — receber a mesma correção três vezes e não mudar nada.' },
+    { w: 'Antecipados', f: 'Chego pronto antes da hora.',
+      cobra: ['Estudar o produto antes de o cliente perguntar', 'Material na mão antes da reunião', 'Responder antes de ser cobrado', 'Prospectar antes de faltar lead'],
+      nao: ['Improvisar na frente do cliente', 'Depois eu confirmo sobre o que era obrigação saber', 'Cliente cobrando resposta que era nossa', 'Só correr atrás com o funil seco'],
+      fim: 'Por repetição — chegar cru na frente do cliente de novo, depois de já ter sido avisado.' },
+    { w: 'Obstinados', f: 'Não largo o que prometi.',
+      cobra: ['Meta perseguida até o último dia do trimestre', 'Voltar no cliente que disse não', 'Tentativa nova quando a anterior falhou', 'Ritmo mantido no mês em que aperta'],
+      nao: ['Abandonar a meta no meio do caminho', 'Desistir no primeiro não', 'Desculpa no lugar de tentativa nova', 'Aceitar resultado ruim como normal'],
+      fim: 'Por repetição — parar de perseguir a meta assumida e transformar isso em rotina.' }
+  ],
+  metas: [
+    { lbl: 'Onde estamos', valor: 'R$ 28 mi', sub: 'VGV · últimos 12 meses', estilo: '' },
+    { lbl: 'Em 12 meses', valor: 'R$ 56 mi', sub: 'o primeiro passo: dobrar', estilo: 'rosa' },
+    { lbl: 'Em 24 meses', valor: 'R$ 100 mi', sub: 'onde queremos chegar', estilo: 'ouro' }
+  ],
+  citacoes: [
+    { texto: 'Acho que vocês conseguem dobrar de faturamento.', ts: '00:56:02' },
+    { texto: 'Tudo o que é importante tem que ter uma meta. Toda meta tem que ser checada. E você só pode colocar a meta naquilo que você pode cobrar.', ts: '01:09:12' },
+    { texto: 'Tu já sabe fazer R$ 28 milhões, vamos para o próximo step. Qual é uma meta que seja ousada, mas que você consiga conquistar?', ts: '01:59:34' }
+  ]
+};
 
-const PASSOS = [
-  {
-    tarefa: 'Tarefa 01', nome: 'Valores',
-    intro: 'Quatro palavras, cada uma com a frase que sai da boca do corretor:',
-    entrega: () => '<div class="gridval">' + VALORES.map(v =>
-      '<div class="valcel"><b>' + v.w + '</b><small>“' + v.f + '”</small></div>').join('') + '</div>',
-    ph: 'Comente aqui...'
-  },
-  {
-    tarefa: 'Tarefa 02', nome: 'Missão',
-    intro: 'O que a Nox faz por quem compra:',
-    entrega: () => '<p class="frase-hero">Transformar o desejo de morar ou investir no litoral em uma decisão que o cliente <em>entenda</em>, <em>confie</em> e <em>não se arrependa</em>.</p>',
-    ph: 'Comente aqui...'
-  },
-  {
-    tarefa: 'Tarefa 03', nome: 'Visão',
-    intro: 'Onde a Nox quer chegar:',
-    entrega: () => '<p class="frase-hero">Ser a imobiliária <em>mais confiável</em> do litoral norte.</p>',
-    ph: 'Comente aqui...'
-  },
-  {
-    tarefa: 'Tarefa 04', nome: 'Metas',
-    intro: 'A rota que substituiu o "repetir os 28":',
-    entrega: () => '<div class="gridval" style="grid-template-columns:repeat(3,1fr)">' +
-      '<div class="valcel" style="text-align:center"><b style="font-size:17px">R$ 28 mi</b><small style="color:var(--text-secondary)">últimos 12m</small></div>' +
-      '<div class="valcel" style="text-align:center;border-color:rgba(255,30,86,.4)"><b style="font-size:17px;color:var(--pink-soft)">R$ 56 mi</b><small>em 12m</small></div>' +
-      '<div class="valcel" style="text-align:center;border-color:rgba(232,197,71,.5)"><b style="font-size:17px;color:var(--gold-2)">R$ 100 mi</b><small style="color:var(--gold-2)">em 24m</small></div></div>',
-    ph: 'Comente aqui...'
-  }
+const KANBAN_PADRAO = [
+  { titulo: 'A organizar', cor: '#FF5C7E', cards: [
+    { t: 'Assinar o contrato da consultoria', d: 'Enviado por eles na semana anterior ao mapeamento.' },
+    { t: 'Agendar encontro presencial', d: 'Combinar com a Camila. Eles sugeriram vir até nós.' },
+    { t: 'Definir a meta com o time', d: '' } ] },
+  { titulo: 'Próximo encontro', cor: '#FFD569', cards: [
+    { t: 'Apresentar Missão, Visão e Valores', d: '' },
+    { t: 'Levar as metas 56 para 100', d: 'R$ 56 mi em 12 meses, R$ 100 mi em 24.' },
+    { t: 'Cobrar o estudo dos concorrentes', d: 'Prometido no mapeamento: comparativo Sunset, Full, Vext e Águia.' } ] },
+  { titulo: 'Em andamento', cor: '#C4A6FF', cards: [
+    { t: 'Relatórios do CRM', d: '' },
+    { t: 'Funil reorganizado rodando', d: '' } ] },
+  { titulo: 'Concluído', cor: '#34D399', cards: [
+    { t: 'Mapeamento (encontro 01)', d: '2h de reunião, 28/07.' },
+    { t: 'Valores definidos', d: 'Leais, ensináveis, antecipados e obstinados.' } ] }
 ];
 
 const LEGENDA = ['Refazer', 'Fraco', 'Regular', 'Bom', 'Forte'];
+const CORES_COL = ['#FF5C7E', '#FFD569', '#C4A6FF', '#34D399', '#60A5FA', '#FF9EB5', '#E8C547'];
 
 const NAV = [
   { grupo: null, itens: [
@@ -959,59 +697,69 @@ const NAV = [
   { grupo: 'Organização', itens: [
     { id: 'kanban', label: 'Kanban', cor: '#C4A6FF',
       svg: '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/>' }
+  ]},
+  { grupo: 'Restrito', itens: [
+    { id: 'admin', label: 'Administrador', cor: '#9ca3b0', lock: true,
+      svg: '<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>' }
   ]}
 ];
 
-const KANBAN_SEED = [
-  { titulo: 'A organizar', cor: '#FF5C7E', cards: [
-    { t: 'Assinar o contrato da consultoria', d: 'Enviado por eles na semana anterior ao mapeamento.' },
-    { t: 'Agendar encontro presencial', d: 'Combinar com a Camila. Eles sugeriram vir até nós.' },
-    { t: 'Definir a meta com o time', d: '' } ] },
-  { titulo: 'Próximo encontro', cor: '#FFD569', cards: [
-    { t: 'Apresentar Missão, Visão e Valores', d: '' },
-    { t: 'Levar as metas 56 → 100', d: 'R$ 56 mi em 12 meses, R$ 100 mi em 24.' },
-    { t: 'Cobrar o estudo dos concorrentes', d: 'Prometido no mapeamento: comparativo Sunset, Full, Vext e Águia.' } ] },
-  { titulo: 'Em andamento', cor: '#C4A6FF', cards: [
-    { t: 'Relatórios do CRM', d: '' },
-    { t: 'Funil reorganizado rodando', d: '' } ] },
-  { titulo: 'Concluído', cor: '#34D399', cards: [
-    { t: 'Mapeamento (encontro 01)', d: '2h de reunião, 28/07.' },
-    { t: 'Valores definidos', d: 'Leais, ensináveis, antecipados e obstinados.' } ] }
-];
-
-/* =====================================================================
-   ESTADO
-===================================================================== */
-const CHAVE = 'nox_circle_v1';
-let estado = { nome: '', enviadoEm: null, respostas: [], kanban: null, enviadas: [] };
-const notas = {};
-const CORES_COL = ['#FF5C7E', '#FFD569', '#C4A6FF', '#34D399', '#60A5FA', '#FF9EB5', '#E8C547'];
-
-function salvar() { try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {} }
-function carregar() {
-  try { const b = localStorage.getItem(CHAVE); if (b) estado = Object.assign(estado, JSON.parse(b)); } catch (e) {}
-  if (!estado.kanban) estado.kanban = KANBAN_SEED.map(c => ({ titulo: c.titulo, cor: c.cor, cards: c.cards.map(x => ({ t: x.t, d: x.d })) }));
-  // migração: cards antigos eram texto puro
-  estado.kanban.forEach(col => { col.cards = col.cards.map(c => typeof c === 'string' ? { t: c, d: '' } : c); });
-  if (!Array.isArray(estado.enviadas)) estado.enviadas = [];
-}
-
-/* Gravação das respostas.
-   Sobrescrita pelo módulo do Firebase no fim do arquivo — este é o fallback
-   local, usado se o Firebase não carregar. */
-async function enviarRespostas(dados) {
-  salvar();
-  console.log('[Nox] resposta salva localmente (Firebase indisponível):', dados);
-  return true;
-}
-
-/* status de sincronização mostrado na caixa de respostas */
+/* ===== estado ===== */
+const CHAVE = 'nox_circle_v2';
+let conteudo = clonar(CONTEUDO_PADRAO);
+let kanban = clonar(KANBAN_PADRAO);
+let estado = { nome: '', respostas: [], enviadas: [] };
+let ehAdmin = false;
 let syncStatus = 'local';
-function setSync(s) { syncStatus = s; montarRespostas(); }
+const notas = {};
 
-/* =====================================================================
-   NAVEGAÇÃO
-===================================================================== */
+function clonar(o) { return JSON.parse(JSON.stringify(o)); }
+function escaparHTML(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function fmt(s) { return escaparHTML(s).replace(/\*([^*]+)\*/g, '<em>$1</em>'); }
+
+function salvar() {
+  try { localStorage.setItem(CHAVE, JSON.stringify({ nome: estado.nome, enviadas: estado.enviadas, kanban: kanban, conteudo: conteudo })); } catch (e) {}
+}
+function carregar() {
+  try {
+    const b = localStorage.getItem(CHAVE);
+    if (!b) return;
+    const d = JSON.parse(b);
+    if (d.nome) estado.nome = d.nome;
+    if (Array.isArray(d.enviadas)) estado.enviadas = d.enviadas;
+    if (Array.isArray(d.kanban) && d.kanban.length) kanban = d.kanban;
+    if (d.conteudo) conteudo = Object.assign(clonar(CONTEUDO_PADRAO), d.conteudo);
+  } catch (e) {}
+}
+
+/* fallbacks — o módulo do Firebase sobrescreve */
+async function enviarRespostas() { salvar(); return true; }
+async function persistirKanban() { salvar(); return true; }
+async function persistirConteudo() { salvar(); return false; }
+async function apagarRespostaRemota() { return false; }
+async function autenticarAdmin() { return false; }
+
+function setSync(s) { syncStatus = s; pintarSync(); }
+function pintarSync() {
+  const sel = document.getElementById('syncTag');
+  if (!sel) return;
+  const m = {
+    online: ['sincronizado', 'var(--emerald)', 'rgba(52,211,153,.12)'],
+    erro: ['só neste aparelho', 'var(--red)', 'rgba(244,91,105,.12)'],
+    local: ['local', 'var(--text-secondary)', 'rgba(255,255,255,.06)']
+  }[syncStatus];
+  sel.textContent = m[0]; sel.style.color = m[1]; sel.style.background = m[2];
+}
+
+function toast(msg, tipo) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast on ' + (tipo || '');
+  clearTimeout(t._h);
+  t._h = setTimeout(() => { t.className = 'toast ' + (tipo || ''); }, 2800);
+}
+
+/* ===== navegação ===== */
 function montarNav() {
   const html = NAV.map(g =>
     '<div class="rail-grupo">' +
@@ -1019,7 +767,7 @@ function montarNav() {
     g.itens.map(i =>
       '<button class="rail-item" data-pg="' + i.id + '" onclick="irPara(\'' + i.id + '\')">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:' + i.cor + '">' + i.svg + '</svg>' +
-      '<span>' + i.label + '</span></button>'
+      '<span class="txt">' + i.label + '</span>' + (i.lock ? '<span class="lock">&#128274;</span>' : '') + '</button>'
     ).join('') + '</div>'
   ).join('');
   document.getElementById('railNav').innerHTML = html;
@@ -1033,6 +781,7 @@ function irPara(id) {
   drawer(false);
   window.scrollTo({ top: 0 });
   if (id === 'metas') animarMetas();
+  if (id === 'admin' && ehAdmin) montarAdmin();
 }
 
 function drawer(abrir) {
@@ -1040,15 +789,29 @@ function drawer(abrir) {
   document.body.style.overflow = abrir ? 'hidden' : '';
 }
 
-/* =====================================================================
-   ENQUETE
-===================================================================== */
+/* ===== enquete ===== */
+function passosDef() {
+  return [
+    { tarefa: 'Tarefa 01', nome: 'Valores', intro: 'Quatro palavras, cada uma com a frase que sai da boca do corretor:',
+      entrega: () => '<div class="gridval">' + conteudo.valores.map(v => '<div class="valcel"><b>' + escaparHTML(v.w) + '</b><small>&ldquo;' + escaparHTML(v.f) + '&rdquo;</small></div>').join('') + '</div>' },
+    { tarefa: 'Tarefa 02', nome: 'Missão', intro: 'O que a Nox faz por quem compra:',
+      entrega: () => '<p class="frase-hero">' + fmt(conteudo.missao) + '</p>' },
+    { tarefa: 'Tarefa 03', nome: 'Visão', intro: 'Onde a Nox quer chegar:',
+      entrega: () => '<p class="frase-hero">' + fmt(conteudo.visao) + '</p>' },
+    { tarefa: 'Tarefa 04', nome: 'Metas', intro: 'A rota que substituiu o repetir os 28:',
+      entrega: () => '<div class="gridval" style="grid-template-columns:repeat(3,1fr)">' + conteudo.metas.map(m => {
+        const cor = m.estilo === 'rosa' ? 'color:var(--pink-soft)' : m.estilo === 'ouro' ? 'color:var(--gold-2)' : '';
+        const bord = m.estilo === 'rosa' ? 'border-color:rgba(255,30,86,.4)' : m.estilo === 'ouro' ? 'border-color:rgba(232,197,71,.5)' : '';
+        return '<div class="valcel" style="text-align:center;' + bord + '"><b style="font-size:17px;' + cor + '">' + escaparHTML(m.valor) + '</b><small style="' + (m.estilo ? cor : 'color:var(--text-secondary)') + '">' + escaparHTML(m.lbl) + '</small></div>';
+      }).join('') + '</div>' }
+  ];
+}
+
 function montarPassos() {
-  PASSOS.forEach((p, i) => {
+  passosDef().forEach((p, i) => {
     const n = i + 1;
     document.getElementById('p' + n).innerHTML =
-      '<div class="card topline">' +
-      '<div class="passo-grid">' +
+      '<div class="card topline"><div class="passo-grid">' +
         '<div>' +
           '<div class="page-eyebrow">' + p.tarefa + '</div>' +
           '<div class="passo-titulo">' + p.nome + '</div>' +
@@ -1057,12 +820,10 @@ function montarPassos() {
         '</div>' +
         '<div>' +
           '<label class="lbl" for="c' + n + '">Seu comentário</label>' +
-          '<textarea class="ta" id="c' + n + '" placeholder="' + p.ph + '"></textarea>' +
+          '<textarea class="ta" id="c' + n + '" placeholder="Comente aqui..."></textarea>' +
           '<label class="lbl" style="margin-top:12px">Nota para esta entrega</label>' +
           '<div class="regua" id="r' + n + '">' +
-            [1,2,3,4,5].map(v =>
-              '<button class="nota" data-v="' + v + '" onclick="marcar(' + n + ',' + v + ')"><b>' + v + '</b><small>' + LEGENDA[v-1] + '</small></button>'
-            ).join('') +
+            [1,2,3,4,5].map(v => '<button class="nota" data-v="' + v + '" onclick="marcar(' + n + ',' + v + ')"><b>' + v + '</b><small>' + LEGENDA[v-1] + '</small></button>').join('') +
           '</div>' +
           '<p class="err" id="e' + n + '">Escolhe uma nota de 1 a 5 pra continuar.</p>' +
           '<div class="acoes">' +
@@ -1082,9 +843,7 @@ function passo(n) {
     wrap.style.display = 'flex';
     document.getElementById('progFill').style.width = (n / 4 * 100) + '%';
     document.getElementById('progTxt').textContent = 'Tarefa ' + n + ' / 4';
-  } else {
-    wrap.style.display = 'none';
-  }
+  } else wrap.style.display = 'none';
   window.scrollTo({ top: 0 });
 }
 
@@ -1107,20 +866,14 @@ function marcar(n, v) {
 function avancar(n) {
   if (!notas[n]) { document.getElementById('e' + n).classList.add('on'); return; }
   estado.respostas[n - 1] = {
-    tarefa: PASSOS[n - 1].nome,
+    tarefa: passosDef()[n - 1].nome,
     comentario: document.getElementById('c' + n).value.trim(),
     nota: notas[n]
   };
   salvar();
   if (n < 4) { passo(n + 1); return; }
 
-  estado.enviadoEm = new Date().toISOString();
-
-  const envio = {
-    nome: estado.nome,
-    enviadoEm: estado.enviadoEm,
-    respostas: estado.respostas.map(r => ({ tarefa: r.tarefa, comentario: r.comentario, nota: r.nota }))
-  };
+  const envio = { nome: estado.nome, enviadoEm: new Date().toISOString(), respostas: clonar(estado.respostas) };
   estado.enviadas.push(envio);
   salvar();
   enviarRespostas(envio);
@@ -1128,50 +881,35 @@ function avancar(n) {
   document.getElementById('fimTitulo').textContent = 'Obrigado, ' + estado.nome.split(' ')[0] + '!';
   const media = estado.respostas.reduce((s, r) => s + r.nota, 0) / estado.respostas.length;
   document.getElementById('fimResumo').innerHTML = estado.respostas.map(r =>
-    '<div class="resumo-l"><span>' + r.tarefa + '</span><b>' + r.nota + ' / 5</b></div>').join('') +
+    '<div class="resumo-l"><span>' + escaparHTML(r.tarefa) + '</span><b>' + r.nota + ' / 5</b></div>').join('') +
     '<div class="resumo-l" style="border-top:1px solid rgba(255,255,255,.12)"><span style="color:#fff;font-weight:600">Média geral</span><b>' + media.toFixed(1).replace('.', ',') + ' / 5</b></div>';
   montarRespostas();
   passo(5);
 }
 
-/* ---- lista de respostas recebidas ---- */
 function montarRespostas() {
   const box = document.getElementById('respBox');
-  const lista = document.getElementById('respLista');
+  pintarSync();
   if (!estado.enviadas.length) { box.style.display = 'none'; return; }
   box.style.display = 'block';
   document.getElementById('respCount').textContent = estado.enviadas.length;
 
-  const sel = document.getElementById('syncTag');
-  if (sel) {
-    if (syncStatus === 'online') { sel.textContent = 'sincronizado'; sel.style.color = 'var(--emerald)'; sel.style.background = 'rgba(52,211,153,.12)'; }
-    else if (syncStatus === 'erro') { sel.textContent = 'só neste aparelho'; sel.style.color = 'var(--red)'; sel.style.background = 'rgba(244,91,105,.12)'; }
-    else { sel.textContent = 'local'; sel.style.color = 'var(--text-secondary)'; sel.style.background = 'rgba(255,255,255,.06)'; }
-  }
-
-  lista.innerHTML = estado.enviadas.slice().reverse().map((e, k) => {
-    const media = e.respostas.reduce((s, r) => s + r.nota, 0) / e.respostas.length;
+  document.getElementById('respLista').innerHTML = estado.enviadas.slice().reverse().map((e, k) => {
+    const media = e.respostas.length ? e.respostas.reduce((s, r) => s + r.nota, 0) / e.respostas.length : 0;
     const d = new Date(e.enviadoEm);
     const quando = isNaN(d) ? '' : d.toLocaleDateString('pt-BR') + ' · ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
     return '<div class="resp" id="resp' + k + '">' +
       '<button class="resp-h" onclick="toggleResp(' + k + ')">' +
-        '<span class="resp-av"><div>' + escaparHTML(e.nome.charAt(0).toUpperCase()) + '</div></span>' +
+        '<span class="resp-av"><div>' + escaparHTML((e.nome || '?').charAt(0).toUpperCase()) + '</div></span>' +
         '<span><b>' + escaparHTML(e.nome) + '</b><br><span class="quando">' + quando + '</span></span>' +
         '<span class="media">' + media.toFixed(1).replace('.', ',') + '</span>' +
-        '<span class="chev">▶</span>' +
+        '<span class="chev">&#9654;</span>' +
       '</button>' +
-      '<div class="resp-b">' +
-        e.respostas.map(r =>
-          '<div class="resp-item">' +
-            '<div class="top"><b>' + escaparHTML(r.tarefa) + '</b>' +
-            '<span class="estrelas" style="color:var(--gold-2)">' + '★'.repeat(r.nota) +
-            '<span style="color:rgba(255,255,255,.15)">' + '★'.repeat(5 - r.nota) + '</span></span></div>' +
-            (r.comentario
-              ? '<p>' + escaparHTML(r.comentario) + '</p>'
-              : '<p class="vazio">sem comentário</p>') +
-          '</div>'
-        ).join('') +
-      '</div></div>';
+      '<div class="resp-b">' + e.respostas.map(r =>
+        '<div class="resp-item"><div class="top"><b>' + escaparHTML(r.tarefa) + '</b>' +
+        '<span class="estrelas" style="color:var(--gold-2)">' + '★'.repeat(r.nota) + '<span style="color:rgba(255,255,255,.15)">' + '★'.repeat(5 - r.nota) + '</span></span></div>' +
+        (r.comentario ? '<p>' + escaparHTML(r.comentario) + '</p>' : '<p class="vazio">sem comentário</p>') + '</div>'
+      ).join('') + '</div></div>';
   }).join('');
 }
 
@@ -1189,86 +927,88 @@ function baixarJSON() {
 
 function refazer() {
   estado.respostas = [];
-  estado.enviadoEm = null;
   estado.nome = '';
   Object.keys(notas).forEach(k => delete notas[k]);
   document.querySelectorAll('.nota').forEach(b => b.classList.remove('sel'));
-  for (let i = 1; i <= 4; i++) document.getElementById('c' + i).value = '';
+  for (let i = 1; i <= 4; i++) { const c = document.getElementById('c' + i); if (c) c.value = ''; }
   document.getElementById('nome').value = '';
   salvar();
   passo(0);
   document.getElementById('nome').focus();
 }
 
-/* =====================================================================
-   MVV — acordeão
-===================================================================== */
+/* ===== mvv + metas ===== */
 function montarMVV() {
-  document.getElementById('mvvValores').innerHTML = VALORES.map((v, i) =>
+  document.getElementById('mvvMissao').innerHTML = fmt(conteudo.missao);
+  document.getElementById('mvvVisao').innerHTML = fmt(conteudo.visao);
+  document.getElementById('mvvValores').innerHTML = conteudo.valores.map((v, i) =>
     '<div class="valx" id="valx' + i + '">' +
     '<button class="valx-h" onclick="toggleVal(' + i + ')">' +
-      '<span class="n">0' + (i + 1) + '</span>' +
-      '<b>' + v.w + '</b>' +
-      '<i>“' + v.f + '”</i>' +
-      '<span class="chev">▶</span>' +
+      '<span class="n">0' + (i + 1) + '</span><b>' + escaparHTML(v.w) + '</b><i>&ldquo;' + escaparHTML(v.f) + '&rdquo;</i><span class="chev">&#9654;</span>' +
     '</button>' +
-    '<div class="valx-b">' +
-      '<div class="duas-col">' +
-        '<div class="mini-l ok"><div class="t">O que se cobra</div><ul>' + v.cobra.map(x => '<li>' + x + '</li>').join('') + '</ul></div>' +
-        '<div class="mini-l no"><div class="t">Inadmissível</div><ul>' + v.nao.map(x => '<li>' + x + '</li>').join('') + '</ul></div>' +
-      '</div>' +
-      '<div class="fim-l"><b>Fim de linha:</b> ' + v.fim + '</div>' +
-    '</div></div>'
+    '<div class="valx-b"><div class="duas-col">' +
+      '<div class="mini-l ok"><div class="t">O que se cobra</div><ul>' + (v.cobra || []).map(x => '<li>' + escaparHTML(x) + '</li>').join('') + '</ul></div>' +
+      '<div class="mini-l no"><div class="t">Inadmissível</div><ul>' + (v.nao || []).map(x => '<li>' + escaparHTML(x) + '</li>').join('') + '</ul></div>' +
+    '</div><div class="fim-l"><b>Fim de linha:</b> ' + escaparHTML(v.fim) + '</div></div></div>'
   ).join('');
 }
 
 function toggleVal(i) { document.getElementById('valx' + i).classList.toggle('open'); }
 
-/* =====================================================================
-   METAS — contagem animada (com garantia de valor final)
-===================================================================== */
+function montarMetas() {
+  document.getElementById('metasRow').innerHTML = conteudo.metas.map(m =>
+    '<div class="meta-cel ' + (m.estilo || '') + '">' +
+    '<div class="meta-lbl">' + escaparHTML(m.lbl) + '</div>' +
+    '<div class="meta-big" data-valor="' + escaparHTML(m.valor) + '">' + escaparHTML(m.valor) + '</div>' +
+    '<p class="meta-sub">' + escaparHTML(m.sub) + '</p></div>'
+  ).join('');
+  document.getElementById('metasCitacoes').innerHTML = conteudo.citacoes.map(c =>
+    '<div class="quote-l"><p>&ldquo;' + escaparHTML(c.texto) + '&rdquo;</p><b>' + escaparHTML(c.ts) + '</b></div>'
+  ).join('');
+  metasAnimadas = false;
+}
+
 let metasAnimadas = false;
 function animarMetas() {
   if (metasAnimadas) return;
   metasAnimadas = true;
   document.querySelectorAll('.meta-big').forEach(el => {
-    const alvo = Number(el.dataset.count);
-    const t0 = performance.now();
-    const dur = 800;
+    const txt = el.dataset.valor || el.textContent;
+    const m = txt.match(/(\d[\d.,]*)/);
+    if (!m) return;
+    const alvo = parseFloat(m[1].replace(/\./g, '').replace(',', '.'));
+    if (!isFinite(alvo) || alvo <= 0) return;
+    const t0 = performance.now(), dur = 800;
     function tick(t) {
       const k = Math.min(1, (t - t0) / dur);
       const e = 1 - Math.pow(1 - k, 3);
-      el.textContent = 'R$ ' + Math.round(alvo * e) + ' mi';
-      if (k < 1) requestAnimationFrame(tick);
+      el.textContent = txt.replace(m[1], String(Math.round(alvo * e)));
+      if (k < 1) requestAnimationFrame(tick); else el.textContent = txt;
     }
     requestAnimationFrame(tick);
-    setTimeout(() => { el.textContent = 'R$ ' + alvo + ' mi'; }, dur + 150);
+    setTimeout(() => { el.textContent = txt; }, dur + 150);
   });
 }
 
-/* =====================================================================
-   KANBAN
-===================================================================== */
-let drag = null;
-let arrastou = false;
+/* ===== kanban ===== */
+let drag = null, arrastou = false;
 
 function montarKanban() {
   const wrap = document.getElementById('kbWrap');
-  wrap.innerHTML = estado.kanban.map((col, ci) =>
+  wrap.innerHTML = kanban.map((col, ci) =>
     '<div class="kb-col" data-col="' + ci + '">' +
     '<div class="kb-head">' +
       '<span class="kb-dot" style="background:' + col.cor + ';color:' + col.cor + '"></span>' +
       '<div class="kb-title" contenteditable="true" spellcheck="false" data-col="' + ci + '">' + escaparHTML(col.titulo) + '</div>' +
       '<span class="kb-pill" style="background:' + col.cor + '22;color:' + col.cor + '">' + col.cards.length + '</span>' +
-      '<button class="kb-delcol" title="Apagar coluna" onclick="apagarColuna(' + ci + ')">✕</button>' +
+      '<button class="kb-delcol" title="Apagar coluna" onclick="apagarColuna(' + ci + ')">&#10005;</button>' +
     '</div>' +
     '<div class="kb-cards" data-col="' + ci + '">' +
       (col.cards.length === 0 ? '<div class="kb-vazio">Solte um card aqui</div>' : '') +
       col.cards.map((c, i) =>
         '<div class="kb-card" draggable="true" data-col="' + ci + '" data-idx="' + i + '" title="Abrir">' +
-        '<b>' + escaparHTML(c.t) + '</b>' +
-        (c.d ? '<p>' + escaparHTML(c.d) + '</p>' : '') +
-        '<button class="del" title="Remover" onclick="event.stopPropagation();removerCard(' + ci + ',' + i + ')">×</button></div>'
+        '<b>' + escaparHTML(c.t) + '</b>' + (c.d ? '<p>' + escaparHTML(c.d) + '</p>' : '') +
+        '<button class="del" title="Remover" onclick="event.stopPropagation();removerCard(' + ci + ',' + i + ')">&times;</button></div>'
       ).join('') +
     '</div>' +
     '<div class="kb-add">' +
@@ -1279,107 +1019,75 @@ function montarKanban() {
   '<button class="kb-newcol" onclick="novaColuna()" title="Criar coluna"><span class="plus">+</span><span>Nova coluna</span></button>';
 
   wrap.querySelectorAll('.kb-card').forEach(card => {
-    card.addEventListener('dragstart', () => {
-      drag = { col: Number(card.dataset.col), idx: Number(card.dataset.idx) };
-      arrastou = true;
-      card.classList.add('dragging');
-    });
-    card.addEventListener('dragend', () => {
-      drag = null;
-      card.classList.remove('dragging');
-      montarKanban();
-      setTimeout(() => { arrastou = false; }, 60);
-    });
-    card.addEventListener('click', () => {
-      if (arrastou) return;
-      abrirCard(Number(card.dataset.col), Number(card.dataset.idx));
-    });
+    card.addEventListener('dragstart', () => { drag = { col: +card.dataset.col, idx: +card.dataset.idx }; arrastou = true; card.classList.add('dragging'); });
+    card.addEventListener('dragend', () => { drag = null; card.classList.remove('dragging'); montarKanban(); setTimeout(() => { arrastou = false; }, 60); });
+    card.addEventListener('click', () => { if (!arrastou) abrirCard(+card.dataset.col, +card.dataset.idx); });
   });
   wrap.querySelectorAll('.kb-col').forEach(colEl => {
     colEl.addEventListener('dragover', e => { e.preventDefault(); colEl.classList.add('dragover'); });
     colEl.addEventListener('dragleave', () => colEl.classList.remove('dragover'));
     colEl.addEventListener('drop', e => {
-      e.preventDefault();
-      colEl.classList.remove('dragover');
+      e.preventDefault(); colEl.classList.remove('dragover');
       if (!drag) return;
-      const destino = Number(colEl.dataset.col);
-      const [card] = estado.kanban[drag.col].cards.splice(drag.idx, 1);
-      estado.kanban[destino].cards.push(card);
+      const destino = +colEl.dataset.col;
+      const [card] = kanban[drag.col].cards.splice(drag.idx, 1);
+      kanban[destino].cards.push(card);
       drag = null;
-      salvar();
-      montarKanban();
+      gravarKanban();
     });
   });
   wrap.querySelectorAll('.kb-title').forEach(t => {
     t.addEventListener('blur', () => {
-      const ci = Number(t.dataset.col);
-      estado.kanban[ci].titulo = t.textContent.trim() || estado.kanban[ci].titulo;
-      salvar();
-      montarKanban();
+      const ci = +t.dataset.col;
+      const novo = t.textContent.trim();
+      if (novo && novo !== kanban[ci].titulo) { kanban[ci].titulo = novo; gravarKanban(); }
+      else montarKanban();
     });
     t.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); t.blur(); } });
   });
 }
 
-function escaparHTML(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+function gravarKanban() { salvar(); montarKanban(); persistirKanban(kanban); }
 
 function addCard(ci) {
   const inp = document.querySelector('.kb-add input[data-col="' + ci + '"]');
   const txt = inp.value.trim();
   if (!txt) return;
-  estado.kanban[ci].cards.push({ t: txt, d: '' });
-  salvar();
-  montarKanban();
+  kanban[ci].cards.push({ t: txt, d: '' });
+  gravarKanban();
   const novo = document.querySelector('.kb-add input[data-col="' + ci + '"]');
   if (novo) novo.focus();
 }
 
-function removerCard(ci, i) {
-  estado.kanban[ci].cards.splice(i, 1);
-  salvar();
-  montarKanban();
-}
+function removerCard(ci, i) { kanban[ci].cards.splice(i, 1); gravarKanban(); }
 
-/* ---- colunas ---- */
 function novaColuna() {
-  const cor = CORES_COL[estado.kanban.length % CORES_COL.length];
-  estado.kanban.push({ titulo: 'Nova coluna', cor: cor, cards: [] });
-  salvar();
-  montarKanban();
-  // já deixa o título pronto pra renomear
+  kanban.push({ titulo: 'Nova coluna', cor: CORES_COL[kanban.length % CORES_COL.length], cards: [] });
+  gravarKanban();
   const titulos = document.querySelectorAll('.kb-title');
   const ultimo = titulos[titulos.length - 1];
   if (ultimo) {
     ultimo.focus();
-    const r = document.createRange();
-    r.selectNodeContents(ultimo);
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(r);
+    const r = document.createRange(); r.selectNodeContents(ultimo);
+    const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
   }
 }
 
 function apagarColuna(ci) {
-  const col = estado.kanban[ci];
+  const col = kanban[ci];
   if (!col) return;
-  if (estado.kanban.length <= 1) { alert('Precisa sobrar pelo menos uma coluna.'); return; }
+  if (kanban.length <= 1) { toast('Precisa sobrar pelo menos uma coluna.', 'erro'); return; }
   if (col.cards.length && !confirm('Apagar a coluna "' + col.titulo + '" e os ' + col.cards.length + ' card(s) dentro dela?')) return;
-  estado.kanban.splice(ci, 1);
-  salvar();
-  montarKanban();
+  kanban.splice(ci, 1);
+  gravarKanban();
 }
 
-/* ---- modal do card ---- */
 let modalRef = null;
-
 function abrirCard(ci, i) {
   modalRef = { ci, i };
-  const col = estado.kanban[ci];
-  const c = col.cards[i];
-  document.getElementById('mDot').style.background = col.cor;
-  document.getElementById('mDot').style.color = col.cor;
+  const col = kanban[ci], c = col.cards[i];
+  const dot = document.getElementById('mDot');
+  dot.style.background = col.cor; dot.style.color = col.cor;
   document.getElementById('mCol').textContent = col.titulo;
   document.getElementById('mTitulo').value = c.t;
   document.getElementById('mDesc').value = c.d || '';
@@ -1387,73 +1095,212 @@ function abrirCard(ci, i) {
   document.body.style.overflow = 'hidden';
   document.getElementById('mTitulo').focus();
 }
-
 function fecharModal() {
   modalRef = null;
   document.getElementById('modalWrap').classList.remove('open');
   document.body.style.overflow = '';
 }
-
 function salvarCard() {
   if (!modalRef) return;
   const t = document.getElementById('mTitulo').value.trim();
   if (!t) { document.getElementById('mTitulo').focus(); return; }
-  const c = estado.kanban[modalRef.ci].cards[modalRef.i];
-  c.t = t;
-  c.d = document.getElementById('mDesc').value.trim();
-  salvar();
-  montarKanban();
-  fecharModal();
+  const c = kanban[modalRef.ci].cards[modalRef.i];
+  c.t = t; c.d = document.getElementById('mDesc').value.trim();
+  gravarKanban(); fecharModal();
 }
-
 function excluirCard() {
   if (!modalRef) return;
-  estado.kanban[modalRef.ci].cards.splice(modalRef.i, 1);
-  salvar();
-  montarKanban();
-  fecharModal();
+  kanban[modalRef.ci].cards.splice(modalRef.i, 1);
+  gravarKanban(); fecharModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalRef) fecharModal(); });
+
+/* ===== admin ===== */
+async function entrarAdmin() {
+  const senha = document.getElementById('admSenha').value;
+  const err = document.getElementById('admErr');
+  const btn = document.getElementById('admBtn');
+  if (!senha) { err.textContent = 'Digite a senha.'; err.classList.add('on'); return; }
+  err.classList.remove('on');
+  btn.disabled = true; btn.textContent = 'Entrando...';
+  const ok = await autenticarAdmin(senha);
+  btn.disabled = false; btn.textContent = 'Entrar';
+  if (!ok) { err.textContent = 'Senha incorreta ou sem conexão.'; err.classList.add('on'); return; }
+  ehAdmin = true;
+  document.getElementById('admSenha').value = '';
+  document.getElementById('admLogin').style.display = 'none';
+  document.getElementById('admPainel').style.display = 'block';
+  montarAdmin();
+  toast('Bem-vindo ao painel', 'ok');
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && modalRef) fecharModal();
-});
+function sairAdmin() {
+  ehAdmin = false;
+  document.getElementById('admLogin').style.display = 'block';
+  document.getElementById('admPainel').style.display = 'none';
+  if (window.sairFirebase) window.sairFirebase();
+  toast('Você saiu do painel');
+}
 
-/* =====================================================================
-   BOOT
-===================================================================== */
+function montarAdmin() {
+  document.getElementById('admRespCount').textContent = estado.enviadas.length;
+  const cx = document.getElementById('admRespostas');
+  if (!estado.enviadas.length) {
+    cx.innerHTML = '<p style="color:var(--text-secondary);font-size:12px">Nenhuma resposta recebida ainda.</p>';
+  } else {
+    cx.innerHTML = estado.enviadas.slice().reverse().map(e => {
+      const media = e.respostas.length ? (e.respostas.reduce((s, r) => s + r.nota, 0) / e.respostas.length) : 0;
+      const d = new Date(e.enviadoEm);
+      const quando = isNaN(d) ? '' : d.toLocaleDateString('pt-BR') + ' · ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+      return '<div class="adm-linha">' +
+        '<span class="resp-av"><div>' + escaparHTML((e.nome || '?').charAt(0).toUpperCase()) + '</div></span>' +
+        '<div class="info"><b>' + escaparHTML(e.nome) + '</b><span>' + quando + '</span></div>' +
+        '<span class="nota-badge">' + media.toFixed(1).replace('.', ',') + '</span>' +
+        '<button class="btn btn-danger btn-sm" onclick="apagarResposta(\'' + e.enviadoEm + '\')">Apagar</button>' +
+      '</div>';
+    }).join('');
+  }
+
+  document.getElementById('edMissao').value = conteudo.missao;
+  document.getElementById('edVisao').value = conteudo.visao;
+
+  document.getElementById('edValores').innerHTML = conteudo.valores.map((v, i) =>
+    '<div class="adm-val">' +
+      '<div class="adm-val-h"><span class="n">0' + (i + 1) + '</span>' +
+        '<input class="inp" id="vw' + i + '" value="' + escaparHTML(v.w) + '" style="max-width:170px" placeholder="Palavra">' +
+        '<input class="inp" id="vf' + i + '" value="' + escaparHTML(v.f) + '" placeholder="Frase do corretor">' +
+      '</div>' +
+      '<div class="adm-2">' +
+        '<div><label class="lbl">O que se cobra</label><textarea class="ta" id="vc' + i + '" style="min-height:78px">' + escaparHTML((v.cobra || []).join('\n')) + '</textarea></div>' +
+        '<div><label class="lbl">Inadmissível</label><textarea class="ta" id="vn' + i + '" style="min-height:78px">' + escaparHTML((v.nao || []).join('\n')) + '</textarea></div>' +
+      '</div>' +
+      '<div style="margin-top:9px"><label class="lbl">Fim de linha</label><input class="inp" id="vm' + i + '" value="' + escaparHTML(v.fim) + '"></div>' +
+    '</div>'
+  ).join('');
+
+  document.getElementById('edMetas').innerHTML = conteudo.metas.map((m, i) =>
+    '<div class="adm-val" style="margin:0">' +
+      '<label class="lbl">Rótulo</label><input class="inp" id="ml' + i + '" value="' + escaparHTML(m.lbl) + '">' +
+      '<label class="lbl" style="margin-top:8px">Valor</label><input class="inp" id="mv' + i + '" value="' + escaparHTML(m.valor) + '">' +
+      '<label class="lbl" style="margin-top:8px">Descrição</label><input class="inp" id="ms' + i + '" value="' + escaparHTML(m.sub) + '">' +
+      '<label class="lbl" style="margin-top:8px">Cor</label>' +
+      '<select class="inp" id="me' + i + '">' +
+        '<option value=""' + (m.estilo === '' ? ' selected' : '') + '>Branco</option>' +
+        '<option value="rosa"' + (m.estilo === 'rosa' ? ' selected' : '') + '>Rosa</option>' +
+        '<option value="ouro"' + (m.estilo === 'ouro' ? ' selected' : '') + '>Dourado</option>' +
+      '</select>' +
+    '</div>'
+  ).join('');
+
+  document.getElementById('edCitacoes').value = conteudo.citacoes.map(c => c.texto + ' | ' + c.ts).join('\n');
+}
+
+function lerFormulario() {
+  const novo = clonar(conteudo);
+  novo.missao = document.getElementById('edMissao').value.trim();
+  novo.visao = document.getElementById('edVisao').value.trim();
+  novo.valores = conteudo.valores.map((v, i) => ({
+    w: document.getElementById('vw' + i).value.trim(),
+    f: document.getElementById('vf' + i).value.trim(),
+    cobra: document.getElementById('vc' + i).value.split('\n').map(s => s.trim()).filter(Boolean),
+    nao: document.getElementById('vn' + i).value.split('\n').map(s => s.trim()).filter(Boolean),
+    fim: document.getElementById('vm' + i).value.trim()
+  }));
+  novo.metas = conteudo.metas.map((m, i) => ({
+    lbl: document.getElementById('ml' + i).value.trim(),
+    valor: document.getElementById('mv' + i).value.trim(),
+    sub: document.getElementById('ms' + i).value.trim(),
+    estilo: document.getElementById('me' + i).value
+  }));
+  novo.citacoes = document.getElementById('edCitacoes').value.split('\n').map(l => l.trim()).filter(Boolean).map(l => {
+    const p = l.split('|');
+    return { texto: (p[0] || '').trim(), ts: (p[1] || '').trim() };
+  });
+  return novo;
+}
+
+async function salvarConteudoAdmin() {
+  const novo = lerFormulario();
+  if (!novo.missao || !novo.visao) { toast('Missão e visão não podem ficar vazias.', 'erro'); return; }
+  conteudo = novo;
+  salvar();
+  redesenharTudo();
+  const ok = await persistirConteudo(conteudo);
+  toast(ok ? 'Salvo e publicado para todos' : 'Salvo aqui, mas não subiu para a nuvem', ok ? 'ok' : 'erro');
+}
+
+function recarregarConteudo() { montarAdmin(); toast('Alterações descartadas'); }
+
+async function restaurarPadrao() {
+  if (!confirm('Restaurar todos os textos para o padrão original?')) return;
+  conteudo = clonar(CONTEUDO_PADRAO);
+  salvar();
+  redesenharTudo();
+  montarAdmin();
+  const ok = await persistirConteudo(conteudo);
+  toast(ok ? 'Padrão restaurado e publicado' : 'Padrão restaurado localmente', ok ? 'ok' : 'erro');
+}
+
+async function apagarResposta(enviadoEm) {
+  if (!confirm('Apagar esta resposta? Não tem como desfazer.')) return;
+  const ok = await apagarRespostaRemota(enviadoEm);
+  estado.enviadas = estado.enviadas.filter(e => e.enviadoEm !== enviadoEm);
+  salvar();
+  montarRespostas();
+  montarAdmin();
+  toast(ok ? 'Resposta apagada' : 'Apagada aqui, mas continua na nuvem', ok ? 'ok' : 'erro');
+}
+
+function redesenharTudo() { montarPassos(); montarMVV(); montarMetas(); }
+
+/* ===== boot ===== */
 carregar();
 montarNav();
-montarPassos();
-montarMVV();
+redesenharTudo();
 montarKanban();
 montarRespostas();
 irPara('enquete');
 if (estado.nome) document.getElementById('nome').value = estado.nome;
 
-/* ponte para o módulo do Firebase (carregado depois deste script) */
+/* ponte para o módulo do Firebase */
 window.noxApp = {
+  aplicarConteudo(v) { conteudo = Object.assign(clonar(CONTEUDO_PADRAO), v); salvar(); redesenharTudo(); if (ehAdmin) montarAdmin(); },
+  aplicarKanban(v) { if (Array.isArray(v) && v.length) { kanban = v; salvar(); montarKanban(); } },
   mesclarEnviadas(online) {
     const chave = r => (r.nome || '') + '|' + (r.enviadoEm || '');
     const mapa = new Map();
     estado.enviadas.forEach(r => mapa.set(chave(r), r));
     online.forEach(r => mapa.set(chave(r), r));
     estado.enviadas = [...mapa.values()].sort((a, b) => new Date(a.enviadoEm) - new Date(b.enviadoEm));
-    salvar();
-    montarRespostas();
+    salvar(); montarRespostas();
+    if (ehAdmin) montarAdmin();
+  },
+  trocarEnviadas(online) {
+    estado.enviadas = online.slice().sort((a, b) => new Date(a.enviadoEm) - new Date(b.enviadoEm));
+    salvar(); montarRespostas();
+    if (ehAdmin) montarAdmin();
   },
   salvarLocal: salvar,
-  setSync: setSync
+  setSync: setSync,
+  toast: toast
 };
 </script>
 
 <!-- ===================================================================
-     FIREBASE — grava e lê as respostas da enquete
-     Projeto: circle-nox · coleção: enquete_circle
+     FIREBASE — respostas, kanban, textos e login do administrador
+     Projeto: circle-nox
+       enquete_circle/{id}   respostas da enquete
+       config/kanban         colunas e cards
+       config/institucional  missão, visão, valores, metas, citações
 =================================================================== -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
   import {
-    getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp
+    getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  import {
+    getFirestore, collection, addDoc, getDocs, deleteDoc, doc, setDoc, getDoc,
+    query, orderBy, where, serverTimestamp, onSnapshot
   } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -1465,61 +1312,159 @@ window.noxApp = {
     appId: "1:814570801357:web:6448c375eba7dffb8a0184"
   };
 
-  const COLECAO = "enquete_circle";
+  const COL_ENQ = "enquete_circle";
+  const EMAIL_ADMIN = "admin@circle-nox.com";
 
-  let db = null;
+  let app = null, db = null, auth = null;
   try {
-    db = getFirestore(initializeApp(firebaseConfig));
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    auth = getAuth(app);
   } catch (e) {
     console.error("[Nox] Firebase não inicializou:", e);
   }
 
-  /* ---- gravar ---- */
+  const N = () => window.noxApp;
+
+  /* ---------------- respostas da enquete ---------------- */
   window.enviarRespostas = async (dados) => {
-    window.noxApp.salvarLocal();
-    if (!db) { window.noxApp.setSync("erro"); return false; }
+    N().salvarLocal();
+    if (!db) { N().setSync("erro"); return false; }
     try {
-      await addDoc(collection(db, COLECAO), {
+      await addDoc(collection(db, COL_ENQ), {
         nome: dados.nome,
         enviadoEm: dados.enviadoEm,
         respostas: dados.respostas,
         criadoEm: serverTimestamp()
       });
-      console.log("[Nox] resposta gravada no Firebase");
-      window.noxApp.setSync("online");
+      N().setSync("online");
       return true;
     } catch (e) {
-      console.error("[Nox] falha ao gravar no Firebase:", e);
-      window.noxApp.setSync("erro");
-      alert("Sua resposta foi salva neste aparelho, mas não subiu para a nuvem.\nAvise a Nox para não perdermos ela.");
+      console.error("[Nox] falha ao gravar resposta:", e);
+      N().setSync("erro");
+      alert("Sua resposta ficou salva neste aparelho, mas não subiu para a nuvem.\nAvise a Nox para não perdermos ela.");
       return false;
     }
   };
 
-  /* ---- ler todas ---- */
-  window.carregarRespostasOnline = async () => {
+  async function lerRespostas(trocar) {
     if (!db) return;
     try {
-      const snap = await getDocs(query(collection(db, COLECAO), orderBy("criadoEm", "asc")));
+      const snap = await getDocs(query(collection(db, COL_ENQ), orderBy("criadoEm", "asc")));
       const lista = [];
       snap.forEach(d => {
         const v = d.data();
         lista.push({
           nome: v.nome || "sem nome",
-          enviadoEm: v.enviadoEm || (v.criadoEm?.toDate ? v.criadoEm.toDate().toISOString() : new Date().toISOString()),
+          enviadoEm: v.enviadoEm || (v.criadoEm && v.criadoEm.toDate ? v.criadoEm.toDate().toISOString() : new Date().toISOString()),
           respostas: Array.isArray(v.respostas) ? v.respostas : []
         });
       });
-      window.noxApp.mesclarEnviadas(lista);
-      window.noxApp.setSync("online");
-      console.log("[Nox] " + lista.length + " resposta(s) carregada(s) do Firebase");
+      if (trocar) N().trocarEnviadas(lista); else N().mesclarEnviadas(lista);
+      N().setSync("online");
+      console.log("[Nox] " + lista.length + " resposta(s) do Firebase");
     } catch (e) {
-      console.warn("[Nox] não foi possível ler as respostas online:", e.code || e.message);
-      window.noxApp.setSync("erro");
+      console.warn("[Nox] não deu para ler respostas:", e.code || e.message);
+      N().setSync("erro");
+    }
+  }
+
+  window.apagarRespostaRemota = async (enviadoEm) => {
+    if (!db || !auth || !auth.currentUser) return false;
+    try {
+      const snap = await getDocs(query(collection(db, COL_ENQ), where("enviadoEm", "==", enviadoEm)));
+      if (snap.empty) return false;
+      await Promise.all(snap.docs.map(d => deleteDoc(doc(db, COL_ENQ, d.id))));
+      return true;
+    } catch (e) {
+      console.error("[Nox] falha ao apagar resposta:", e);
+      return false;
     }
   };
 
-  window.carregarRespostasOnline();
+  /* ---------------- kanban ---------------- */
+  let escrevendoKanban = false;
+
+  window.persistirKanban = async (kanban) => {
+    N().salvarLocal();
+    if (!db) return false;
+    try {
+      escrevendoKanban = true;
+      await setDoc(doc(db, "config", "kanban"), { colunas: kanban, atualizadoEm: serverTimestamp() });
+      setTimeout(() => { escrevendoKanban = false; }, 800);
+      return true;
+    } catch (e) {
+      escrevendoKanban = false;
+      console.error("[Nox] falha ao salvar kanban:", e);
+      N().toast("Kanban salvo só neste aparelho", "erro");
+      return false;
+    }
+  };
+
+  function ouvirKanban() {
+    if (!db) return;
+    onSnapshot(doc(db, "config", "kanban"), (snap) => {
+      if (escrevendoKanban) return;           // não sobrescreve o que eu acabei de mandar
+      if (!snap.exists()) return;
+      const d = snap.data();
+      if (Array.isArray(d.colunas) && d.colunas.length) N().aplicarKanban(d.colunas);
+    }, (e) => console.warn("[Nox] kanban sem sincronia:", e.code || e.message));
+  }
+
+  /* ---------------- textos (institucional) ---------------- */
+  window.persistirConteudo = async (conteudo) => {
+    N().salvarLocal();
+    if (!db || !auth || !auth.currentUser) return false;
+    try {
+      await setDoc(doc(db, "config", "institucional"), Object.assign({}, conteudo, { atualizadoEm: serverTimestamp() }));
+      return true;
+    } catch (e) {
+      console.error("[Nox] falha ao salvar textos:", e);
+      return false;
+    }
+  };
+
+  async function lerConteudo() {
+    if (!db) return;
+    try {
+      const snap = await getDoc(doc(db, "config", "institucional"));
+      if (!snap.exists()) return;
+      const d = snap.data();
+      delete d.atualizadoEm;
+      N().aplicarConteudo(d);
+      console.log("[Nox] textos carregados do Firebase");
+    } catch (e) {
+      console.warn("[Nox] não deu para ler os textos:", e.code || e.message);
+    }
+  }
+
+  /* ---------------- login do administrador ---------------- */
+  window.autenticarAdmin = async (senha) => {
+    if (!auth) return false;
+    try {
+      await signInWithEmailAndPassword(auth, EMAIL_ADMIN, senha);
+      console.log("[Nox] admin autenticado");
+      return true;
+    } catch (e) {
+      console.warn("[Nox] login recusado:", e.code);
+      return false;
+    }
+  };
+
+  window.sairFirebase = async () => {
+    if (auth) { try { await signOut(auth); } catch (e) {} }
+  };
+
+  /* ---------------- carga inicial ---------------- */
+  lerConteudo();
+  lerRespostas(false);
+  ouvirKanban();
+
+  if (auth) {
+    onAuthStateChanged(auth, (u) => {
+      if (u) lerRespostas(true);   // admin logado: espelha exatamente o que está na nuvem
+    });
+  }
 </script>
 
 </body>
