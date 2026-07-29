@@ -687,20 +687,312 @@ const CONTEUDO_PADRAO = {
 };
 
 const KANBAN_PADRAO = [
-  { titulo: 'A organizar', cor: '#FF5C7E', cards: [
-    { t: 'Assinar o contrato da consultoria', d: 'Enviado por eles na semana anterior ao mapeamento.' },
-    { t: 'Agendar encontro presencial', d: 'Combinar com a Camila. Eles sugeriram vir até nós.' },
-    { t: 'Definir a meta com o time', d: '' } ] },
-  { titulo: 'Próximo encontro', cor: '#FFD569', cards: [
-    { t: 'Apresentar Missão, Visão e Valores', d: '' },
-    { t: 'Levar as metas 56 para 100', d: 'R$ 56 mi em 12 meses, R$ 100 mi em 24.' },
-    { t: 'Cobrar o estudo dos concorrentes', d: 'Prometido no mapeamento: comparativo Sunset, Full, Vext e Águia.' } ] },
-  { titulo: 'Em andamento', cor: '#C4A6FF', cards: [
-    { t: 'Relatórios do CRM', d: '' },
-    { t: 'Funil reorganizado rodando', d: '' } ] },
-  { titulo: 'Concluído', cor: '#34D399', cards: [
-    { t: 'Mapeamento (encontro 01)', d: '2h de reunião, 28/07.' },
-    { t: 'Valores definidos', d: 'Leais, ensináveis, antecipados e obstinados.' } ] }
+  {
+    "titulo": "Financeiro",
+    "cor": "#FF5C7E",
+    "cards": [
+      {
+        "t": "Montar o DRE mensal",
+        "d": "'Primeira auditoria é financeiro' (01:39:40). Hoje não existe; margem de contribuição e líquida são desconhecidas (01:25)."
+      },
+      {
+        "t": "Calcular a margem real por venda",
+        "d": "Quanto sobra depois do imposto (~9,1% Simples), corretor (50-60%) e gerente (15-22%). A meta declarada de 40% nunca foi conferida (01:19)."
+      },
+      {
+        "t": "Medir receita, não só VGV",
+        "d": "Venda a 5% e a 6% entram como o mesmo '1 milhão' (00:31). R$ 28 mi de VGV são ~R$ 1,47 mi de comissão bruta."
+      },
+      {
+        "t": "Indicador de venda líquida no sistema",
+        "d": "Permuta e parceria hoje são excluídas na mão, no fechamento (00:30)."
+      },
+      {
+        "t": "Regularizar CNPJ, CRECI e notas dos corretores",
+        "d": "Maioria recebe sem nota; só o SDR tem contrato; parte começou sem CRECI (01:22-01:24). Modelo dele: 100% PJ + split de pagamento que gera boleto e cada um emite a sua (01:49)."
+      },
+      {
+        "t": "Meta por linha de custo fixo",
+        "d": "'Tenho que ter meta de conta de luz' (01:51). Orçamento linha a linha — o padrão da primeira mentoria."
+      },
+      {
+        "t": "Reavaliar a progressão de comissão",
+        "d": "O modelo atual é teste deste trimestre (01:21). Decidir se mantém, ajusta faixas ou realoca verba para mais líderes."
+      },
+      {
+        "t": "Estudar expansão com capital de terceiros",
+        "d": "'Não se faz expansão com capital próprio' — o arrependimento declarado dele (01:41). Ver antes de dobrar a operação."
+      }
+    ]
+  },
+  {
+    "titulo": "Comercial & Funil",
+    "cor": "#FFD569",
+    "cards": [
+      {
+        "t": "Não deixar o mês fechar zerado",
+        "d": "Julho estava sem nenhum fechamento no mapeamento (00:18). Ele foi direto: 'passar o mês zerado não rola' (00:29) — e se ofereceu pra ajudar."
+      },
+      {
+        "t": "Medir conversão por etapa do funil",
+        "d": "Sem isso a meta de R$ 56 mi não vira número de leads e corretores. As 9 etapas já registram avanço por resposta (01:06)."
+      },
+      {
+        "t": "Computar tempo do lead ao fechamento",
+        "d": "Não é medido hoje (01:11). Já houve ciclo de ~7 dias em produto quente."
+      },
+      {
+        "t": "Concluir o funil separado por canal",
+        "d": "Começou antes do mapeamento, motivado pelas conversas com eles (01:28). Lead, carteira própria e ligação ativa têm processos e cobranças diferentes."
+      },
+      {
+        "t": "Compartimentar contatos por perfil",
+        "d": "'Não definido' no mapeamento (01:13). Segmentar a base por perfil de cliente para carteira e campanhas."
+      },
+      {
+        "t": "Terminar os relatórios do CRM",
+        "d": "Em construção (00:58). São eles que alimentam a reunião de segunda com os números de cada corretor."
+      },
+      {
+        "t": "Meta do corretor dentro do funil",
+        "d": "Hoje mora em outra aba do sistema (01:04). Integrar à visão de funil."
+      },
+      {
+        "t": "Upgrade: follow-ups guiados no funil",
+        "d": "Próxima evolução declarada do CRM (00:52): o funil sugere o próximo passo com exemplo de áudio por etapa."
+      },
+      {
+        "t": "Analisar os campeões de bolsão",
+        "d": "Na Felicitar, quem mais pega lead é quem menos converte (01:10). Medir aqui — retemos 10% da venda por lead."
+      },
+      {
+        "t": "Definir o atendimento de lead noturno",
+        "d": "Fora de temporada, lead das 20h+ estaciona até as 9h (01:08). Avaliar estrutura própria pra não esfriar."
+      },
+      {
+        "t": "Documentar e proteger o CRM",
+        "d": "80% construído das 20h à 1h por um sócio (01:45). Maior diferencial competitivo, maior dependência de uma pessoa."
+      },
+      {
+        "t": "Integração do CRM com portais",
+        "d": "Adiada de propósito (00:36) porque pronto é minoria. Registrada pra quando a prateleira crescer."
+      },
+      {
+        "t": "Avaliar prateleira própria de pronto",
+        "d": "75-80% do volume em lançamento = pipeline no ritmo das construtoras (00:07, 00:15). A Sunset tem pauta de pronto um pouco maior, mas 'não é um diferencial tão competitivo' (00:46). Decidir se queremos esse hedge."
+      },
+      {
+        "t": "Entrar no mercado vizinho desejado",
+        "d": "Desejo declarado e não realizado (00:07:16 — o nome da região saiu truncado na gravação; conferir)."
+      }
+    ]
+  },
+  {
+    "titulo": "Pessoas & Liderança",
+    "cor": "#C4A6FF",
+    "cards": [
+      {
+        "t": "Implantar a liderança por perguntas",
+        "d": "O líder não opina: contrasta o comportamento com valores e funil e fecha com compromisso e prazo (01:35)."
+      },
+      {
+        "t": "Mapear o sonho de cada corretor",
+        "d": "'Líder bom sabe o sonho do liderado' (01:36). É a âncora da cobrança: isso te aproxima ou te afasta dele?"
+      },
+      {
+        "t": "Programa de feedback mensal",
+        "d": "O modelo dele é mensal e formal (01:13): bloco técnico (vendas, funil) + comportamental (processos, cultura, disponibilidade)."
+      },
+      {
+        "t": "Primeira pesquisa de clima",
+        "d": "Nunca foi feita (01:14). O ambiente é nosso maior ativo de retenção e não é medido."
+      },
+      {
+        "t": "Plano de carreira do corretor",
+        "d": "Hoje só o SDR tem caminho claro (01:23)."
+      },
+      {
+        "t": "Análise de perfil na contratação",
+        "d": "Nenhuma ferramenta hoje (01:13). A entrevista dele é por valores — a nossa versão são as 4 palavras."
+      },
+      {
+        "t": "Definir o perfil de contratação",
+        "d": "Formar do zero 'faz parte do DNA' (01:15), mas ele devolveu: 'isso vai estar dentro de uma definição do que vocês querem' (01:16). Decidir a régua: iniciante, experiente ou mix."
+      },
+      {
+        "t": "Definir verba de engajamento",
+        "d": "Hoje sai 'da cabeça dos sócios' (01:14). Definir valor mensal pra rituais e time junto."
+      },
+      {
+        "t": "Indicador de vacância de vendas",
+        "d": "Corretor há X meses sem vender — hoje é 'de cabeça' (01:15). Colocar no sistema."
+      },
+      {
+        "t": "Estruturar o programa de líderes",
+        "d": "Retomado 'de leve, em testezinhos' (00:47). Ele perdeu 3 líderes na Felicitar e não perdeu o time junto — cultura segurou (00:38, 00:42). Formar a próxima camada antes de precisar dela."
+      },
+      {
+        "t": "Lançar a sessão de treinamentos",
+        "d": "Pronta em backstage no CRM (00:53), com aulas geradas por IA. Liberar e incorporar sugestões do time."
+      },
+      {
+        "t": "Resgatar o manual da Nox",
+        "d": "80 páginas paradas no Drive há 2 anos (01:33). Destilar o que vale para os rituais novos."
+      },
+      {
+        "t": "Atrair corretoras mulheres",
+        "d": "Time 100% masculino hoje, dito por nós como ponto fraco (00:47). Metade do funil de recrutamento fechado."
+      },
+      {
+        "t": "Planejar a sede única",
+        "d": "Sonho declarado (00:49): unificar as equipes em ponto de rua no terreno do Renan. Calor humano contra a frieza do crescimento."
+      }
+    ]
+  },
+  {
+    "titulo": "Marketing & Demanda",
+    "cor": "#34D399",
+    "cards": [
+      {
+        "t": "Definir verba mensal de mídia",
+        "d": "Investimento 'irrisório' e recomeçando (01:26). Sem verba fixa não há previsibilidade de lead."
+      },
+      {
+        "t": "Medir leads por corretor",
+        "d": "Não medido hoje (01:27). É o que permite custo por venda e cobrança justa do funil."
+      },
+      {
+        "t": "Percentual por canal de origem",
+        "d": "Quanto vem de lead, carteira própria e ação de rua — não estimado (01:28)."
+      },
+      {
+        "t": "Responsável dedicado de marketing",
+        "d": "Hoje: social media pontual (esposa de corretor) + corretor que acumula o tráfego (00:14, 01:27)."
+      },
+      {
+        "t": "Protocolo de lead como diagnóstico",
+        "d": "Com o formato de atendimento cumprido, dá pra saber se o problema é marketing ou atendimento (01:39)."
+      }
+    ]
+  },
+  {
+    "titulo": "Circle · Combinados",
+    "cor": "#FFB81C",
+    "cards": [
+      {
+        "t": "Assinar o contrato",
+        "d": "Pedido no fechamento (01:45), com cláusula de comprometimento de ambas as partes. Provavelmente a terceira das 'três coisas' exigidas pro próximo encontro (01:47) — confirmar com eles."
+      },
+      {
+        "t": "Agendar o presencial com a Camila",
+        "d": "Ele quer vir até nós: 'nada substitui o trato humano' (01:47). Restam mais 4 encontros depois desse."
+      },
+      {
+        "t": "Apresentar Missão, Visão e Valores",
+        "d": "Dever de casa 1, pronto no dashboard. Validar entre os sócios antes de levar."
+      },
+      {
+        "t": "Levar a meta nova: 56 → 100",
+        "d": "Ele rejeitou repetir os 28: 'não precisa de mimos, vamos pro próximo step' (01:59)."
+      },
+      {
+        "t": "Cobrar o estudo dos concorrentes",
+        "d": "Prometido duas vezes (00:47 e 01:44): comparativo Sunset, Full, Vext e Águia."
+      },
+      {
+        "t": "Cobrar o material dos 4 Ps",
+        "d": "Percepção, planejamento e processos geram performance. 'Passa no material de liderança' (00:24)."
+      },
+      {
+        "t": "Cobrar o material do funil avançado",
+        "d": "'Esse material vocês precisam ver' (00:59). É a base dos ajustes que ele quer propor no nosso funil."
+      },
+      {
+        "t": "Cobrar a lista de problemas que ele já vê",
+        "d": "'Já consigo enxergar problemas... bem explícito' (01:40) — e não detalhou nenhum."
+      },
+      {
+        "t": "Marcar as sessões de CRM e de funil",
+        "d": "Ele pediu as duas: ver o sistema com calma (01:01) e uma conversa dedicada de funil com ajustes (01:06)."
+      }
+    ]
+  },
+  {
+    "titulo": "Perguntas ao Brayann",
+    "cor": "#60A5FA",
+    "cards": [
+      {
+        "t": "Como montar CNPJ + split sem quebrar o caixa?",
+        "d": "Fornecedor do split, custo, e como fez a transição com quem já estava na casa."
+      },
+      {
+        "t": "Qual margem líquida é saudável no nosso porte?",
+        "d": "Benchmark que só quem opera quatro imobiliárias tem."
+      },
+      {
+        "t": "Repasse progressivo: crescer melhora ou piora a margem?",
+        "d": "O corretor sobe até 60% conforme vende — existe ponto em que crescer fica menos rentável?"
+      },
+      {
+        "t": "Capital de terceiros: qual instrumento e custo?",
+        "d": "Ele citou o arrependimento (01:41), não a solução. Pedir o caminho concreto."
+      },
+      {
+        "t": "Quantos corretores e leads a meta exige?",
+        "d": "A conta reversa do funil pra chegar nos 56 mi."
+      },
+      {
+        "t": "Como cobrar lead sem atrito com carteira própria?",
+        "d": "Retemos 10% da venda por lead; ainda não deu atrito (01:29). Como evitar que dê?"
+      },
+      {
+        "t": "Que estrutura de marketing os 56 mi pedem?",
+        "d": "Hoje são duas pessoas em meio período. Qual é o mínimo viável?"
+      },
+      {
+        "t": "Como reter líder sem perder o time junto?",
+        "d": "Ele perdeu 3 líderes e o time ficou (00:38). Pedir o mecanismo, não só a teoria."
+      },
+      {
+        "t": "Parceria em cima do nosso CRM?",
+        "d": "A Circle atende imobiliárias de 10-14 corretores (01:55) — nosso sistema serve exatamente a elas."
+      }
+    ]
+  },
+  {
+    "titulo": "Concluído",
+    "cor": "#9ca3b0",
+    "cards": [
+      {
+        "t": "Mapeamento — encontro 01",
+        "d": "2h em 28/07, transcrito e analisado por completo."
+      },
+      {
+        "t": "Grupo unificado com a Circle",
+        "d": "Brayann e Camila dentro do nosso grupo desde o início da call (00:01)."
+      },
+      {
+        "t": "Valores definidos",
+        "d": "Leais, ensináveis, antecipados e obstinados — com frases e linhas vermelhas."
+      },
+      {
+        "t": "Missão e visão redigidas",
+        "d": "Publicadas na aba Institucional do dashboard."
+      },
+      {
+        "t": "Metas propostas",
+        "d": "28 → 56 (12 meses) → 100 (24 meses), prontas pra validação."
+      },
+      {
+        "t": "Funil reorganizado no CRM",
+        "d": "Reorganizado na semana do mapeamento; reuniões por números começaram na segunda (01:03)."
+      },
+      {
+        "t": "Dashboard da consultoria no ar",
+        "d": "circle-nox no Netlify: enquete, institucional, metas, kanban e admin."
+      }
+    ]
+  }
 ];
 
 const LEGENDA = ['Refazer', 'Fraco', 'Regular', 'Bom', 'Forte'];
