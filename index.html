@@ -265,8 +265,6 @@ select.inp { cursor: pointer; }
 .mini-l li::before { content: ''; position: absolute; left: 0; top: .55em; width: 5px; height: 1px; }
 .mini-l.ok li::before { background: var(--emerald); }
 .mini-l.no li::before { background: var(--red); }
-.fim-l { margin-top: 9px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.06); font-size: 11.5px; color: var(--text-secondary); }
-.fim-l b { color: var(--red); font-weight: 700; }
 
 /* metas */
 .metas-row { display: grid; grid-template-columns: 1fr 1fr 1fr; }
@@ -687,22 +685,18 @@ const CONTEUDO_PADRAO = {
   missao: 'Transformar o desejo de morar ou investir no litoral em uma decisão que o cliente *entenda*, *confie* e *não se arrependa*.',
   visao: 'Ser a imobiliária *mais confiável* do litoral norte.',
   valores: [
-    { w: 'Leais', f: 'Perco a venda antes de perder a palavra.',
-      cobra: ['A verdade dita ao cliente antes que ele descubra', 'O sistema mostrando o que aconteceu de verdade', 'Problema falado na frente da pessoa', 'Cliente e negócio de colega respeitados'],
-      nao: ['Omitir defeito para fechar', 'Prometer valorização como se fosse certa', 'Maquiar o funil', 'Desviar cliente · acertar por fora', 'Fofoca e reclamação de corredor'],
-      fim: 'Imediato — mentir para o cliente, desviar negócio, acertar por fora ou rachar o time. Sem segunda conversa.' },
-    { w: 'Ensináveis', f: 'Mudo depois de ouvir.',
-      cobra: ['Ouvir a correção sem se defender', 'Pedir ajuda antes de errar, não depois', 'Aplicar o que foi ensinado — concordar não conta', 'Passar adiante o que aprendeu na rua'],
-      nao: ['Achar que já sabe', 'Concordar com o feedback e não mudar nada', 'Faço do meu jeito com o jeito sem resultado', 'Guardar informação para proteger posição'],
-      fim: 'Por repetição — receber a mesma correção três vezes e não mudar nada.' },
-    { w: 'Antecipados', f: 'Chego pronto antes da hora.',
-      cobra: ['Estudar o produto antes de o cliente perguntar', 'Material na mão antes da reunião', 'Responder antes de ser cobrado', 'Prospectar antes de faltar lead'],
-      nao: ['Improvisar na frente do cliente', 'Depois eu confirmo sobre o que era obrigação saber', 'Cliente cobrando resposta que era nossa', 'Só correr atrás com o funil seco'],
-      fim: 'Por repetição — chegar cru na frente do cliente de novo, depois de já ter sido avisado.' },
-    { w: 'Obstinados', f: 'Não largo o que prometi.',
-      cobra: ['Meta perseguida até o último dia do trimestre', 'Voltar no cliente que disse não', 'Tentativa nova quando a anterior falhou', 'Ritmo mantido no mês em que aperta'],
-      nao: ['Abandonar a meta no meio do caminho', 'Desistir no primeiro não', 'Desculpa no lugar de tentativa nova', 'Aceitar resultado ruim como normal'],
-      fim: 'Por repetição — parar de perseguir a meta assumida e transformar isso em rotina.' }
+    { w: 'Verdadeiros', f: 'Prefiro perder a venda a esconder a verdade.',
+      cobra: ['A verdade dita ao cliente antes que ele descubra', 'Defeito e risco na mesa junto com a proposta', 'Funil e números mostrando o que aconteceu de verdade', 'Problema falado na frente da pessoa certa'],
+      nao: ['Omitir defeito para fechar', 'Prometer valorização como se fosse certa', 'Maquiar o funil para parecer bem', 'Uma versão para cada ouvido'] },
+    { w: 'Autênticos', f: 'Sou o mesmo na frente do cliente e no corredor.',
+      cobra: ['Opinião dada na reunião, não no corredor', 'Discordar de frente, com respeito', 'Admitir o que não sabe e buscar a resposta', 'Ser o mesmo com cliente, colega e sócio'],
+      nao: ['Vestir personagem para vender', 'Concordar na sala e desfazer no corredor', 'Esconder erro para proteger imagem', 'Fofoca e reclamação pelas costas'] },
+    { w: 'Estratégicos', f: 'Cada movimento meu tem um porquê.',
+      cobra: ['Estudar o produto e o cliente antes da reunião', 'Sair de todo atendimento com o próximo passo definido', 'Decidir com número na mão, não com achismo', 'Prospectar antes de faltar lead'],
+      nao: ['Improvisar na frente do cliente', 'Visita sem objetivo e sem próximo passo', 'Repetir o que não funcionou sem mudar nada', 'Só correr atrás com o funil seco'] },
+    { w: 'Comprometidos', f: 'O que eu assumo, eu entrego.',
+      cobra: ['Retorno ao cliente no prazo prometido', 'Meta perseguida até o último dia do trimestre', 'Combinado cumprido sem precisar de cobrança', 'Presença inteira nos rituais do time'],
+      nao: ['Cliente esperando retorno que não chega', 'Abandonar a meta no meio do caminho', 'Desculpa no lugar de tentativa nova', 'Assumir e sumir'] }
   ],
   metas: [
     { lbl: 'Onde estamos', valor: 'R$ 28 mi', sub: 'VGV · últimos 12 meses', estilo: '' },
@@ -1003,7 +997,7 @@ const KANBAN_PADRAO = [
       },
       {
         "t": "Valores definidos",
-        "d": "Leais, ensináveis, antecipados e obstinados — com frases e linhas vermelhas."
+        "d": "Verdadeiros, autênticos, estratégicos e comprometidos — com frases e linhas vermelhas."
       },
       {
         "t": "Missão e visão redigidas",
@@ -1294,7 +1288,7 @@ function montarMVV() {
     '<div class="valx-b"><div class="duas-col">' +
       '<div class="mini-l ok"><div class="t">O que se cobra</div><ul>' + (v.cobra || []).map(x => '<li>' + escaparHTML(x) + '</li>').join('') + '</ul></div>' +
       '<div class="mini-l no"><div class="t">Inadmissível</div><ul>' + (v.nao || []).map(x => '<li>' + escaparHTML(x) + '</li>').join('') + '</ul></div>' +
-    '</div><div class="fim-l"><b>Fim de linha:</b> ' + escaparHTML(v.fim) + '</div></div></div>'
+    '</div></div></div>'
   ).join('');
 }
 
@@ -1546,7 +1540,6 @@ function montarAdmin() {
         '<div><label class="lbl">O que se cobra</label><textarea class="ta" id="vc' + i + '" style="min-height:78px">' + escaparHTML((v.cobra || []).join('\n')) + '</textarea></div>' +
         '<div><label class="lbl">Inadmissível</label><textarea class="ta" id="vn' + i + '" style="min-height:78px">' + escaparHTML((v.nao || []).join('\n')) + '</textarea></div>' +
       '</div>' +
-      '<div style="margin-top:9px"><label class="lbl">Fim de linha</label><input class="inp" id="vm' + i + '" value="' + escaparHTML(v.fim) + '"></div>' +
     '</div>'
   ).join('');
 
@@ -1575,8 +1568,7 @@ function lerFormulario() {
     w: document.getElementById('vw' + i).value.trim(),
     f: document.getElementById('vf' + i).value.trim(),
     cobra: document.getElementById('vc' + i).value.split('\n').map(s => s.trim()).filter(Boolean),
-    nao: document.getElementById('vn' + i).value.split('\n').map(s => s.trim()).filter(Boolean),
-    fim: document.getElementById('vm' + i).value.trim()
+    nao: document.getElementById('vn' + i).value.split('\n').map(s => s.trim()).filter(Boolean)
   }));
   novo.metas = conteudo.metas.map((m, i) => ({
     lbl: document.getElementById('ml' + i).value.trim(),
@@ -1636,7 +1628,12 @@ if (estado.nome) document.getElementById('nome').value = estado.nome;
 
 /* ponte para o módulo do Firebase */
 window.noxApp = {
-  aplicarConteudo(v) { conteudo = Object.assign(clonar(CONTEUDO_PADRAO), v); salvar(); redesenharTudo(); if (ehAdmin) montarAdmin(); },
+  aplicarConteudo(v) {
+    conteudo = Object.assign(clonar(CONTEUDO_PADRAO), v);
+    /* migração: se vier a geração anterior de valores salva na nuvem, assume a nova */
+    if (conteudo.valores && conteudo.valores[0] && conteudo.valores[0].w === 'Leais') conteudo.valores = clonar(CONTEUDO_PADRAO.valores);
+    salvar(); redesenharTudo(); if (ehAdmin) montarAdmin();
+  },
   aplicarKanban(v) { if (Array.isArray(v) && v.length) { kanban = v; salvar(); montarKanban(); } },
   mesclarEnviadas(online) {
     const chave = r => (r.nome || '') + '|' + (r.enviadoEm || '');
