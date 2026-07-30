@@ -698,15 +698,15 @@ const CONTEUDO_PADRAO = {
   missao: 'Transformar o desejo de morar ou investir no litoral em uma decisão que o cliente *entenda*, *confie* e *não se arrependa*.',
   visao: 'Ser a imobiliária *mais recomendada* do Litoral Norte por transformar clientes de momento em *parceiros para a vida toda*.',
   valores: [
-    { w: 'Atitude',
-      cobra: ['Agir sem esperar ordem quando o problema é seu', 'Trazer solução junto com o problema', 'Puxar a frente quando ninguém quer', 'Energia alta na segunda e no fim do mês'],
-      nao: ['Esperar mandarem fazer o óbvio', 'Reclamar sem propor saída', 'Empurrar o problema para o colega', 'Morno com cliente, morno com meta'] },
-    { w: 'Autenticidade',
-      cobra: ['Opinião dada na reunião, não no corredor', 'Discordar de frente, com respeito', 'Admitir o que não sabe e buscar a resposta', 'Ser o mesmo com cliente, colega e sócio'],
-      nao: ['Vestir personagem para vender', 'Concordar na sala e desfazer no corredor', 'Esconder erro para proteger imagem', 'Fofoca e reclamação pelas costas'] },
     { w: 'Preparação',
       cobra: ['Estudar o produto e o cliente antes da reunião', 'Material na mão antes de o cliente pedir', 'Treino levado tão a sério quanto atendimento', 'Prospectar antes de faltar lead'],
       nao: ['Improvisar na frente do cliente', 'Chegar cru em reunião marcada com antecedência', 'Cliente sabendo mais do produto que o corretor', 'Só correr atrás com o funil seco'] },
+    { w: 'Atitude',
+      cobra: ['Agir sem esperar ordem quando o problema é seu', 'Trazer solução junto com o problema', 'Puxar a frente quando ninguém quer', 'Energia alta na segunda e no fim do mês'],
+      nao: ['Esperar mandarem fazer o óbvio', 'Reclamar sem propor saída', 'Empurrar o problema para o colega', 'Morno com cliente, morno com meta'] },
+    { w: 'Valorização',
+      cobra: ['Tratar cada cliente como parceiro de longo prazo, não como venda do mês', 'Reconhecer o acerto do colega em voz alta', 'Cuidar do nome da Nox dentro e fora do expediente', 'Dar peso ao pequeno: retorno, pontualidade, detalhe'],
+      nao: ['Tratar cliente pequeno como cliente menor', 'Colher sozinho o mérito que foi do time', 'Falar mal da empresa ou do colega para fora', 'Largar o cliente depois da comissão paga'] },
     { w: 'Evolução',
       cobra: ['Ouvir a correção sem se defender', 'Aplicar o feedback — concordar não conta', 'Buscar ser melhor que o próprio trimestre passado', 'Passar adiante o que aprendeu'],
       nao: ['Achar que já sabe', 'Receber a mesma correção duas vezes e não mudar', 'Se comparar só com quem está atrás', 'Guardar informação para proteger posição'] }
@@ -1087,7 +1087,7 @@ function clonar(o) { return JSON.parse(JSON.stringify(o)); }
 function migrarValores() {
   if (conteudo.valores && conteudo.valores[0]) {
     const w0 = conteudo.valores[0].w;
-    if (w0 === 'Leais') conteudo.valores = clonar(CONTEUDO_PADRAO.valores);
+    if (w0 === 'Leais' || w0 === 'Atitude') conteudo.valores = clonar(CONTEUDO_PADRAO.valores);
     if (w0 === 'Verdadeiros') { conteudo.valores11 = conteudo.valores; conteudo.valores = clonar(CONTEUDO_PADRAO.valores); }
   }
   if (!Array.isArray(conteudo.valores11) || !conteudo.valores11.length) conteudo.valores11 = clonar(CONTEUDO_PADRAO.valores11);
