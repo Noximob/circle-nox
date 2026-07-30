@@ -245,9 +245,10 @@ select.inp { cursor: pointer; }
 .mv-linha { display: grid; grid-template-columns: 84px 1fr; gap: 14px; align-items: start; padding: 13px 16px; }
 .mv-linha .mv-k { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--pink-soft); padding-top: 3px; }
 @media (max-width: 560px) { .mv-linha { grid-template-columns: 1fr; gap: 4px; } }
-.vset-wrap { margin-left: auto; display: inline-flex; gap: 6px; }
-.vset { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); color: var(--text-secondary); background: rgba(255,255,255,.03); transition: all .15s; cursor: pointer; }
-.vset.on { color: #fff; border-color: rgba(255,30,86,.55); background: rgba(255,30,86,.12); box-shadow: 0 0 10px rgba(255,30,86,.25); }
+.vset-row { display: flex; gap: 8px; margin: 4px 0 14px; }
+.vset { flex: 1; max-width: 220px; font-family: 'Rajdhani', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,.14); color: var(--text-secondary); background: rgba(255,255,255,.03); transition: all .18s; cursor: pointer; }
+.vset:hover { border-color: rgba(255,255,255,.28); color: #fff; }
+.vset.on { color: #fff; border-color: var(--pink); background: rgba(255,30,86,.14); box-shadow: 0 0 16px rgba(255,30,86,.3); text-shadow: 0 0 10px rgba(255,30,86,.6); }
 .valx { border: 1px solid rgba(255,255,255,.07); border-radius: 10px; background: rgba(255,255,255,.02); overflow: hidden; }
 .valx-h { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; text-align: left; transition: background .15s; }
 .valx-h:hover { background: rgba(255,255,255,.03); }
@@ -269,7 +270,7 @@ select.inp { cursor: pointer; }
 .mini-l.no li::before { background: var(--red); }
 
 /* metas */
-.metas-row { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.metas-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 .meta-cel { padding: 14px 10px; text-align: center; border-right: 1px solid rgba(255,255,255,.06); }
 .meta-cel:last-child { border-right: none; }
 .meta-lbl { font-family: 'Rajdhani', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 6px; color: var(--text-secondary); }
@@ -549,7 +550,11 @@ select.inp { cursor: pointer; }
           <p class="frase-hero" id="mvvVisao"></p>
         </div>
         <div class="card animate-fade-in">
-          <div class="sec-title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Valores <span style="color:var(--text-secondary);font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:none">— clique para abrir o detalhe</span><span class="vset-wrap"><button class="vset on" id="vsetBtn1" onclick="trocarValores('1')">Valores 1</button><button class="vset" id="vsetBtn11" onclick="trocarValores('11')">Valores 1.1</button></span></div>
+          <div class="sec-title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Valores <span style="color:var(--text-secondary);font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:none">— clique para abrir o detalhe</span></div>
+          <div class="vset-row">
+            <button class="vset on" id="vsetBtn1" onclick="trocarValores('1')">Opção 1</button>
+            <button class="vset" id="vsetBtn11" onclick="trocarValores('11')">Opção 2</button>
+          </div>
           <div id="mvvValores" class="stack" style="gap:6px"></div>
         </div>
       </div>
@@ -722,8 +727,11 @@ const CONTEUDO_PADRAO = {
       nao: ['Cliente esperando retorno que não chega', 'Abandonar a meta no meio do caminho', 'Desculpa no lugar de tentativa nova', 'Assumir e sumir'] }
   ],
   metas: [
-    { lbl: 'Onde estamos', valor: 'R$ 28 mi', sub: 'VGV · últimos 12 meses', estilo: '' },
-    { lbl: 'Em 12 meses', valor: 'R$ 56 mi', sub: 'o primeiro passo: dobrar', estilo: 'rosa' },
+    { lbl: 'Tri 1 · jul–set/26', valor: 'R$ 14 mi', sub: 'já em andamento', estilo: '' },
+    { lbl: 'Tri 2 · out–dez/26', valor: 'R$ 14 mi', sub: 'até a virada do ano', estilo: '' },
+    { lbl: 'Tri 3 · jan–mar/27', valor: 'R$ 14 mi', sub: 'temporada de verão', estilo: '' },
+    { lbl: 'Tri 4 · abr–jun/27', valor: 'R$ 14 mi', sub: 'fecha o primeiro ano', estilo: '' },
+    { lbl: 'Em 12 meses', valor: 'R$ 56 mi', sub: 'acumulado · o dobro dos R$ 28 mi', estilo: 'rosa' },
     { lbl: 'Em 24 meses', valor: 'R$ 100 mi', sub: 'onde queremos chegar', estilo: 'ouro' }
   ],
   citacoes: [
@@ -1085,6 +1093,7 @@ function migrarValores() {
   }
   if (!Array.isArray(conteudo.valores11) || !conteudo.valores11.length) conteudo.valores11 = clonar(CONTEUDO_PADRAO.valores11);
   if (conteudo.visao === 'Ser a imobiliária *mais confiável* do litoral norte.') conteudo.visao = CONTEUDO_PADRAO.visao;
+  if (Array.isArray(conteudo.metas) && conteudo.metas.length === 3) conteudo.metas = clonar(CONTEUDO_PADRAO.metas);
 }
 function escaparHTML(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 function fmt(s) { return escaparHTML(s).replace(/\*([^*]+)\*/g, '<em>$1</em>'); }
@@ -1166,13 +1175,13 @@ function passosDef() {
   return [
     { tarefa: 'Tarefa 01', nome: 'Valores',
       entrega: () => '<div class="gridval">' + conteudo.valores.map(v => '<div class="valcel"><b>' + escaparHTML(v.w) + '</b></div>').join('') + '</div>' },
-    { tarefa: 'Tarefa 02', nome: 'Valores (outra opção)', titulo: 'Valores <span class="alt-tag">outra opção</span>',
+    { tarefa: 'Tarefa 01', nome: 'Valores (outra opção)', titulo: 'Valores <span class="alt-tag">outra opção</span>',
       entrega: () => '<div class="gridval">' + (conteudo.valores11 || []).map(v => '<div class="valcel"><b>' + escaparHTML(v.w) + '</b></div>').join('') + '</div>' },
-    { tarefa: 'Tarefa 03', nome: 'Missão',
+    { tarefa: 'Tarefa 02', nome: 'Missão',
       entrega: () => '<p class="frase-hero">' + fmt(conteudo.missao) + '</p>' },
-    { tarefa: 'Tarefa 04', nome: 'Visão',
+    { tarefa: 'Tarefa 03', nome: 'Visão',
       entrega: () => '<p class="frase-hero">' + fmt(conteudo.visao) + '</p>' },
-    { tarefa: 'Tarefa 05', nome: 'Metas',
+    { tarefa: 'Tarefa 04', nome: 'Metas',
       entrega: () => '<div class="gridval" style="grid-template-columns:repeat(3,1fr)">' + conteudo.metas.map(m => {
         const cor = m.estilo === 'rosa' ? 'color:var(--pink-soft)' : m.estilo === 'ouro' ? 'color:var(--gold-2)' : '';
         const bord = m.estilo === 'rosa' ? 'border-color:rgba(255,30,86,.4)' : m.estilo === 'ouro' ? 'border-color:rgba(232,197,71,.5)' : '';
