@@ -224,12 +224,17 @@ select.inp { cursor: pointer; }
 .frase-hero { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: #fff; line-height: 1.35; text-wrap: balance; }
 .frase-hero em { font-style: normal; color: var(--pink-soft); text-shadow: 0 0 14px rgba(255,30,86,.35); }
 
-.regua { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; max-width: 370px; }
-.nota { padding: 10px 2px 8px; border-radius: 10px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); text-align: center; transition: all .15s; cursor: pointer; }
-.nota:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); transform: translateY(-2px); }
-.nota b { display: block; font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; line-height: 1; }
-.nota small { display: block; font-size: 8.5px; color: var(--text-secondary); margin-top: 3px; }
-.nota.sel { border-color: var(--pink); background: rgba(255,30,86,.12); box-shadow: 0 0 14px rgba(255,30,86,.28); transform: scale(1.04); }
+.painel-voto { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; padding: 18px 16px; align-self: start; }
+.voto-lbl { display: block; font-family: 'Rajdhani', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; }
+.painel-voto .ta { min-height: 84px; }
+.painel-voto .acoes { justify-content: space-between; margin-top: 16px; }
+.dica-toque { font-size: 10px; color: var(--text-secondary); margin-top: 9px; letter-spacing: .04em; }
+.regua { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.nota { padding: 13px 2px 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); text-align: center; transition: all .16s; cursor: pointer; }
+.nota:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.24); transform: translateY(-2px); }
+.nota b { display: block; font-family: 'Rajdhani', sans-serif; font-size: 21px; font-weight: 700; line-height: 1; color: rgba(255,255,255,.85); }
+.nota small { display: block; font-size: 8.5px; color: var(--text-secondary); margin-top: 4px; letter-spacing: .04em; }
+.nota.sel { border-color: var(--pink); background: linear-gradient(160deg, rgba(255,30,86,.26), rgba(196,16,63,.12)); box-shadow: 0 0 18px rgba(255,30,86,.32); transform: scale(1.05); }
 .nota.sel b { color: var(--pink-soft); text-shadow: 0 0 10px rgba(255,30,86,.55); }
 .nota.sel small { color: var(--pink-hi); }
 
@@ -1178,9 +1183,9 @@ function drawer(abrir) {
 function passosDef() {
   return [
     { tarefa: 'Tarefa 01', nome: 'Valores',
-      entrega: () => '<div class="gridval">' + conteudo.valores.map(v => '<div class="valcel"><b>' + escaparHTML(v.w) + '</b></div>').join('') + '</div>' },
+      entrega: () => '<div class="stack" style="gap:6px">' + renderValx(conteudo.valores, 'eqva') + '</div><p class="dica-toque">toque numa palavra para ver o que se cobra e o que é inadmissível</p>' },
     { tarefa: 'Tarefa 01', nome: 'Valores (outra opção)', titulo: 'Valores <span class="alt-tag">outra opção</span>',
-      entrega: () => '<div class="gridval">' + (conteudo.valores11 || []).map(v => '<div class="valcel"><b>' + escaparHTML(v.w) + '</b></div>').join('') + '</div>' },
+      entrega: () => '<div class="stack" style="gap:6px">' + renderValx(conteudo.valores11, 'eqvb') + '</div><p class="dica-toque">toque numa palavra para ver o que se cobra e o que é inadmissível</p>' },
     { tarefa: 'Tarefa 02', nome: 'Missão',
       entrega: () => '<p class="frase-hero">' + fmt(conteudo.missao) + '</p>' },
     { tarefa: 'Tarefa 03', nome: 'Visão',
@@ -1205,17 +1210,17 @@ function montarPassos() {
           '<div class="passo-titulo">' + (p.titulo || p.nome) + '</div>' +
           p.entrega() +
         '</div>' +
-        '<div>' +
-          '<label class="lbl" for="c' + n + '">Seu comentário</label>' +
+        '<div class="painel-voto">' +
+          '<label class="voto-lbl" for="c' + n + '">Seu comentário</label>' +
           '<textarea class="ta" id="c' + n + '" placeholder="Comente aqui..."></textarea>' +
-          '<label class="lbl" style="margin-top:12px">Nota para esta entrega</label>' +
+          '<label class="voto-lbl" style="margin-top:16px">Sua nota</label>' +
           '<div class="regua" id="r' + n + '">' +
             [1,2,3,4,5].map(v => '<button class="nota" data-v="' + v + '" onclick="marcar(' + n + ',' + v + ')"><b>' + v + '</b><small>' + LEGENDA[v-1] + '</small></button>').join('') +
           '</div>' +
           '<p class="err" id="e' + n + '">Escolhe uma nota de 1 a 5 pra continuar.</p>' +
           '<div class="acoes">' +
-            '<button class="btn btn-ghost" onclick="passo(' + (n - 1) + ')">Voltar</button>' +
-            '<button class="btn btn-pink" onclick="avancar(' + n + ')">' + (n === tot ? 'Concluir' : 'Próxima') + '</button>' +
+            '<button class="btn btn-ghost" onclick="passo(' + (n - 1) + ')">&larr; Voltar</button>' +
+            '<button class="btn btn-pink" onclick="avancar(' + n + ')">' + (n === tot ? 'Concluir ✓' : 'Próxima &rarr;') + '</button>' +
           '</div>' +
         '</div>' +
       '</div></div>';
@@ -1330,15 +1335,10 @@ function refazer() {
 let valSetMVV = '1';
 function trocarValores(q) { valSetMVV = q; montarMVV(); }
 
-function montarMVV() {
-  document.getElementById('mvvMissao').innerHTML = fmt(conteudo.missao);
-  document.getElementById('mvvVisao').innerHTML = fmt(conteudo.visao);
-  const b1 = document.getElementById('vsetBtn1'), b11 = document.getElementById('vsetBtn11');
-  if (b1) { b1.classList.toggle('on', valSetMVV === '1'); b11.classList.toggle('on', valSetMVV === '11'); }
-  const vs = valSetMVV === '11' ? (conteudo.valores11 || []) : conteudo.valores;
-  document.getElementById('mvvValores').innerHTML = vs.map((v, i) =>
-    '<div class="valx" id="valx' + i + '">' +
-    '<button class="valx-h" onclick="toggleVal(' + i + ')">' +
+function renderValx(lista, prefixo) {
+  return (lista || []).map((v, i) =>
+    '<div class="valx" id="' + prefixo + i + '">' +
+    '<button class="valx-h" onclick="toggleValx(\'' + prefixo + i + '\')">' +
       '<span class="n">0' + (i + 1) + '</span><b>' + escaparHTML(v.w) + '</b><span class="chev">&#9654;</span>' +
     '</button>' +
     '<div class="valx-b"><div class="duas-col">' +
@@ -1347,8 +1347,16 @@ function montarMVV() {
     '</div></div></div>'
   ).join('');
 }
+function toggleValx(id) { document.getElementById(id).classList.toggle('open'); }
 
-function toggleVal(i) { document.getElementById('valx' + i).classList.toggle('open'); }
+function montarMVV() {
+  document.getElementById('mvvMissao').innerHTML = fmt(conteudo.missao);
+  document.getElementById('mvvVisao').innerHTML = fmt(conteudo.visao);
+  const b1 = document.getElementById('vsetBtn1'), b11 = document.getElementById('vsetBtn11');
+  if (b1) { b1.classList.toggle('on', valSetMVV === '1'); b11.classList.toggle('on', valSetMVV === '11'); }
+  const vs = valSetMVV === '11' ? (conteudo.valores11 || []) : conteudo.valores;
+  document.getElementById('mvvValores').innerHTML = renderValx(vs, 'valx');
+}
 
 function montarMetas() {
   document.getElementById('metasRow').innerHTML = conteudo.metas.map(m =>
