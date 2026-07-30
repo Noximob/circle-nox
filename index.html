@@ -218,7 +218,6 @@ select.inp { cursor: pointer; }
 .gridval { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
 .valcel { background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.07); border-radius: 10px; padding: 10px 11px; }
 .valcel b { font-family: 'Rajdhani', sans-serif; display: block; font-size: 14.5px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .07em; line-height: 1; margin-bottom: 3px; }
-.valcel small { display: block; font-size: 10.5px; color: var(--pink-hi); line-height: 1.35; }
 
 .frase-hero { font-family: 'Rajdhani', sans-serif; font-size: 16.5px; font-weight: 700; color: #fff; line-height: 1.3; text-wrap: balance; }
 .frase-hero em { font-style: normal; color: var(--pink-soft); text-shadow: 0 0 14px rgba(255,30,86,.35); }
@@ -248,13 +247,11 @@ select.inp { cursor: pointer; }
 .valx-h { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; text-align: left; transition: background .15s; }
 .valx-h:hover { background: rgba(255,255,255,.03); }
 .valx-h .n { font-family: 'Rajdhani', sans-serif; font-size: 10px; font-weight: 700; color: var(--pink-soft); }
-.valx-h b { font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .07em; }
-.valx-h i { flex: 1; font-style: italic; font-size: 11px; color: var(--pink-hi); text-align: left; }
+.valx-h b { flex: 1; font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .07em; }
 .valx-h .chev { color: var(--text-secondary); font-size: 10px; transition: transform .2s; }
 .valx.open .chev { transform: rotate(90deg); }
 .valx-b { display: none; padding: 2px 12px 12px; border-top: 1px solid rgba(255,255,255,.05); }
 .valx.open .valx-b { display: block; }
-@media (max-width: 640px) { .valx-h i { display: none; } }
 .duas-col { display: grid; grid-template-columns: 1fr; gap: 10px; padding-top: 10px; }
 @media (min-width: 680px) { .duas-col { grid-template-columns: 1fr 1fr; gap: 16px; } }
 .mini-l .t { font-family: 'Rajdhani', sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 5px; }
@@ -685,16 +682,16 @@ const CONTEUDO_PADRAO = {
   missao: 'Transformar o desejo de morar ou investir no litoral em uma decisão que o cliente *entenda*, *confie* e *não se arrependa*.',
   visao: 'Ser a imobiliária *mais confiável* do litoral norte.',
   valores: [
-    { w: 'Verdadeiros', f: 'Prefiro perder a venda a esconder a verdade.',
+    { w: 'Verdadeiros',
       cobra: ['A verdade dita ao cliente antes que ele descubra', 'Defeito e risco na mesa junto com a proposta', 'Funil e números mostrando o que aconteceu de verdade', 'Problema falado na frente da pessoa certa'],
       nao: ['Omitir defeito para fechar', 'Prometer valorização como se fosse certa', 'Maquiar o funil para parecer bem', 'Uma versão para cada ouvido'] },
-    { w: 'Autênticos', f: 'Sou o mesmo na frente do cliente e no corredor.',
+    { w: 'Autênticos',
       cobra: ['Opinião dada na reunião, não no corredor', 'Discordar de frente, com respeito', 'Admitir o que não sabe e buscar a resposta', 'Ser o mesmo com cliente, colega e sócio'],
       nao: ['Vestir personagem para vender', 'Concordar na sala e desfazer no corredor', 'Esconder erro para proteger imagem', 'Fofoca e reclamação pelas costas'] },
-    { w: 'Estratégicos', f: 'Cada movimento meu tem um porquê.',
+    { w: 'Estratégicos',
       cobra: ['Estudar o produto e o cliente antes da reunião', 'Sair de todo atendimento com o próximo passo definido', 'Decidir com número na mão, não com achismo', 'Prospectar antes de faltar lead'],
       nao: ['Improvisar na frente do cliente', 'Visita sem objetivo e sem próximo passo', 'Repetir o que não funcionou sem mudar nada', 'Só correr atrás com o funil seco'] },
-    { w: 'Comprometidos', f: 'O que eu assumo, eu entrego.',
+    { w: 'Comprometidos',
       cobra: ['Retorno ao cliente no prazo prometido', 'Meta perseguida até o último dia do trimestre', 'Combinado cumprido sem precisar de cobrança', 'Presença inteira nos rituais do time'],
       nao: ['Cliente esperando retorno que não chega', 'Abandonar a meta no meio do caminho', 'Desculpa no lugar de tentativa nova', 'Assumir e sumir'] }
   ],
@@ -1132,7 +1129,7 @@ function drawer(abrir) {
 function passosDef() {
   return [
     { tarefa: 'Tarefa 01', nome: 'Valores', intro: 'Quatro palavras, cada uma com a frase que sai da boca do corretor:',
-      entrega: () => '<div class="gridval">' + conteudo.valores.map(v => '<div class="valcel"><b>' + escaparHTML(v.w) + '</b><small>&ldquo;' + escaparHTML(v.f) + '&rdquo;</small></div>').join('') + '</div>' },
+      entrega: () => '<div class="gridval">' + conteudo.valores.map(v => '<div class="valcel"><b>' + escaparHTML(v.w) + '</b></div>').join('') + '</div>' },
     { tarefa: 'Tarefa 02', nome: 'Missão', intro: 'O que a Nox faz por quem compra:',
       entrega: () => '<p class="frase-hero">' + fmt(conteudo.missao) + '</p>' },
     { tarefa: 'Tarefa 03', nome: 'Visão', intro: 'Onde a Nox quer chegar:',
@@ -1283,7 +1280,7 @@ function montarMVV() {
   document.getElementById('mvvValores').innerHTML = conteudo.valores.map((v, i) =>
     '<div class="valx" id="valx' + i + '">' +
     '<button class="valx-h" onclick="toggleVal(' + i + ')">' +
-      '<span class="n">0' + (i + 1) + '</span><b>' + escaparHTML(v.w) + '</b><i>&ldquo;' + escaparHTML(v.f) + '&rdquo;</i><span class="chev">&#9654;</span>' +
+      '<span class="n">0' + (i + 1) + '</span><b>' + escaparHTML(v.w) + '</b><span class="chev">&#9654;</span>' +
     '</button>' +
     '<div class="valx-b"><div class="duas-col">' +
       '<div class="mini-l ok"><div class="t">O que se cobra</div><ul>' + (v.cobra || []).map(x => '<li>' + escaparHTML(x) + '</li>').join('') + '</ul></div>' +
@@ -1533,8 +1530,7 @@ function montarAdmin() {
   document.getElementById('edValores').innerHTML = conteudo.valores.map((v, i) =>
     '<div class="adm-val">' +
       '<div class="adm-val-h"><span class="n">0' + (i + 1) + '</span>' +
-        '<input class="inp" id="vw' + i + '" value="' + escaparHTML(v.w) + '" style="max-width:170px" placeholder="Palavra">' +
-        '<input class="inp" id="vf' + i + '" value="' + escaparHTML(v.f) + '" placeholder="Frase do corretor">' +
+        '<input class="inp" id="vw' + i + '" value="' + escaparHTML(v.w) + '" placeholder="Palavra">' +
       '</div>' +
       '<div class="adm-2">' +
         '<div><label class="lbl">O que se cobra</label><textarea class="ta" id="vc' + i + '" style="min-height:78px">' + escaparHTML((v.cobra || []).join('\n')) + '</textarea></div>' +
@@ -1566,7 +1562,6 @@ function lerFormulario() {
   novo.visao = document.getElementById('edVisao').value.trim();
   novo.valores = conteudo.valores.map((v, i) => ({
     w: document.getElementById('vw' + i).value.trim(),
-    f: document.getElementById('vf' + i).value.trim(),
     cobra: document.getElementById('vc' + i).value.split('\n').map(s => s.trim()).filter(Boolean),
     nao: document.getElementById('vn' + i).value.split('\n').map(s => s.trim()).filter(Boolean)
   }));
