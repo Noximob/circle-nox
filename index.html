@@ -690,7 +690,7 @@ select.inp { cursor: pointer; }
 /* ===== conteúdo padrão ===== */
 const CONTEUDO_PADRAO = {
   missao: 'Transformar o desejo de morar ou investir no litoral em uma decisão que o cliente *entenda*, *confie* e *não se arrependa*.',
-  visao: 'Ser a imobiliária *mais confiável* do litoral norte.',
+  visao: 'Ser a imobiliária *mais recomendada* do Litoral Norte por transformar clientes de momento em *parceiros para a vida toda*.',
   valores: [
     { w: 'Atitude',
       cobra: ['Agir sem esperar ordem quando o problema é seu', 'Trazer solução junto com o problema', 'Puxar a frente quando ninguém quer', 'Energia alta na segunda e no fim do mês'],
@@ -1082,6 +1082,7 @@ function migrarValores() {
     if (w0 === 'Verdadeiros') { conteudo.valores11 = conteudo.valores; conteudo.valores = clonar(CONTEUDO_PADRAO.valores); }
   }
   if (!Array.isArray(conteudo.valores11) || !conteudo.valores11.length) conteudo.valores11 = clonar(CONTEUDO_PADRAO.valores11);
+  if (conteudo.visao === 'Ser a imobiliária *mais confiável* do litoral norte.') conteudo.visao = CONTEUDO_PADRAO.visao;
 }
 function escaparHTML(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 function fmt(s) { return escaparHTML(s).replace(/\*([^*]+)\*/g, '<em>$1</em>'); }
