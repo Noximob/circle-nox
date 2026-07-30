@@ -576,10 +576,6 @@ select.inp { cursor: pointer; }
         <div class="card topline animate-fade-in" style="padding:0">
           <div class="metas-row" id="metasRow"></div>
         </div>
-        <div class="card animate-fade-in">
-          <div class="sec-title"><svg class="ic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg> O que norteia</div>
-          <div id="metasCitacoes"></div>
-        </div>
       </div>
     </section>
 
@@ -660,8 +656,6 @@ select.inp { cursor: pointer; }
           <div class="card animate-fade-in">
             <div class="sec-title"><svg class="ic-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg> Metas</div>
             <div class="adm-grid" id="edMetas"></div>
-            <label class="lbl" for="edCitacoes" style="margin-top:12px">Citações — uma por linha, no formato <code style="font-size:10px">texto | 00:00:00</code></label>
-            <textarea class="ta" id="edCitacoes" style="min-height:80px"></textarea>
           </div>
 
           <div class="acoes" style="margin-top:0">
@@ -1365,9 +1359,6 @@ function montarMetas() {
     '<div class="meta-big" data-valor="' + escaparHTML(m.valor) + '">' + escaparHTML(m.valor) + '</div>' +
     '<p class="meta-sub">' + escaparHTML(m.sub) + '</p></div>'
   ).join('');
-  document.getElementById('metasCitacoes').innerHTML = conteudo.citacoes.map(c =>
-    '<div class="quote-l"><p>&ldquo;' + escaparHTML(c.texto) + '&rdquo;</p><b>' + escaparHTML(c.ts) + '</b></div>'
-  ).join('');
   metasAnimadas = false;
 }
 
@@ -1632,7 +1623,6 @@ function montarAdmin() {
     '</div>'
   ).join('');
 
-  document.getElementById('edCitacoes').value = conteudo.citacoes.map(c => c.texto + ' | ' + c.ts).join('\n');
 }
 
 function lerFormulario() {
@@ -1655,10 +1645,6 @@ function lerFormulario() {
     sub: document.getElementById('ms' + i).value.trim(),
     estilo: document.getElementById('me' + i).value
   }));
-  novo.citacoes = document.getElementById('edCitacoes').value.split('\n').map(l => l.trim()).filter(Boolean).map(l => {
-    const p = l.split('|');
-    return { texto: (p[0] || '').trim(), ts: (p[1] || '').trim() };
-  });
   return novo;
 }
 
