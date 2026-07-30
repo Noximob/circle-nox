@@ -731,8 +731,8 @@ const CONTEUDO_PADRAO = {
     { lbl: 'Tri 2 · out–dez/26', valor: 'R$ 14 mi', sub: 'até a virada do ano', estilo: '' },
     { lbl: 'Tri 3 · jan–mar/27', valor: 'R$ 14 mi', sub: 'temporada de verão', estilo: '' },
     { lbl: 'Tri 4 · abr–jun/27', valor: 'R$ 14 mi', sub: 'fecha o primeiro ano', estilo: '' },
-    { lbl: 'Em 12 meses', valor: 'R$ 56 mi', sub: 'acumulado · o dobro dos R$ 28 mi', estilo: 'rosa' },
-    { lbl: 'Em 24 meses', valor: 'R$ 100 mi', sub: 'onde queremos chegar', estilo: 'ouro' }
+    { lbl: 'Em 12 meses', valor: 'R$ 56 mi', sub: 'acumulado dos 4 trimestres', estilo: 'rosa' },
+    { lbl: 'Em 24 meses', valor: 'R$ 100 mi', sub: 'a sequência · dos 12 aos 24 meses', estilo: 'ouro' }
   ],
   citacoes: [
     { texto: 'Acho que vocês conseguem dobrar de faturamento.', ts: '00:56:02' },
@@ -1094,6 +1094,10 @@ function migrarValores() {
   if (!Array.isArray(conteudo.valores11) || !conteudo.valores11.length) conteudo.valores11 = clonar(CONTEUDO_PADRAO.valores11);
   if (conteudo.visao === 'Ser a imobiliária *mais confiável* do litoral norte.') conteudo.visao = CONTEUDO_PADRAO.visao;
   if (Array.isArray(conteudo.metas) && conteudo.metas.length === 3) conteudo.metas = clonar(CONTEUDO_PADRAO.metas);
+  if (Array.isArray(conteudo.metas) && conteudo.metas.length === 6) {
+    if (conteudo.metas[4] && conteudo.metas[4].sub === 'acumulado · o dobro dos R$ 28 mi') conteudo.metas[4].sub = CONTEUDO_PADRAO.metas[4].sub;
+    if (conteudo.metas[5] && conteudo.metas[5].sub === 'onde queremos chegar') conteudo.metas[5].sub = CONTEUDO_PADRAO.metas[5].sub;
+  }
 }
 function escaparHTML(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 function fmt(s) { return escaparHTML(s).replace(/\*([^*]+)\*/g, '<em>$1</em>'); }
