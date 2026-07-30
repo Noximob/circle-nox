@@ -243,6 +243,9 @@ select.inp { cursor: pointer; }
 .mv-linha { display: grid; grid-template-columns: 84px 1fr; gap: 14px; align-items: start; padding: 13px 16px; }
 .mv-linha .mv-k { font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--pink-soft); padding-top: 3px; }
 @media (max-width: 560px) { .mv-linha { grid-template-columns: 1fr; gap: 4px; } }
+.vset-wrap { margin-left: auto; display: inline-flex; gap: 6px; }
+.vset { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); color: var(--text-secondary); background: rgba(255,255,255,.03); transition: all .15s; cursor: pointer; }
+.vset.on { color: #fff; border-color: rgba(255,30,86,.55); background: rgba(255,30,86,.12); box-shadow: 0 0 10px rgba(255,30,86,.25); }
 .valx { border: 1px solid rgba(255,255,255,.07); border-radius: 10px; background: rgba(255,255,255,.02); overflow: hidden; }
 .valx-h { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; text-align: left; transition: background .15s; }
 .valx-h:hover { background: rgba(255,255,255,.03); }
@@ -484,7 +487,7 @@ select.inp { cursor: pointer; }
 
       <div class="prog" id="progWrap" style="display:none">
         <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
-        <span class="prog-txt" id="progTxt">Tarefa 1 / 4</span>
+        <span class="prog-txt" id="progTxt">Tarefa 01 · 1 / 5</span>
       </div>
 
       <div class="passo on" id="p0">
@@ -504,8 +507,9 @@ select.inp { cursor: pointer; }
       <div class="passo" id="p2"></div>
       <div class="passo" id="p3"></div>
       <div class="passo" id="p4"></div>
+      <div class="passo" id="p5"></div>
 
-      <div class="passo" id="p5">
+      <div class="passo" id="p6">
         <div class="card topline animate-fade-in">
           <div class="check-ok">✓</div>
           <div class="passo-titulo" id="fimTitulo">Obrigado!</div>
@@ -543,7 +547,7 @@ select.inp { cursor: pointer; }
           <p class="frase-hero" id="mvvVisao"></p>
         </div>
         <div class="card animate-fade-in">
-          <div class="sec-title"><svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Valores <span style="color:var(--text-secondary);font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:none">— clique para abrir o detalhe</span></div>
+          <div class="sec-title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Valores <span style="color:var(--text-secondary);font-weight:600;font-size:10px;letter-spacing:.05em;text-transform:none">— clique para abrir o detalhe</span><span class="vset-wrap"><button class="vset on" id="vsetBtn1" onclick="trocarValores('1')">Valores 1</button><button class="vset" id="vsetBtn11" onclick="trocarValores('11')">Valores 1.1</button></span></div>
           <div id="mvvValores" class="stack" style="gap:6px"></div>
         </div>
       </div>
@@ -630,8 +634,14 @@ select.inp { cursor: pointer; }
           </div>
 
           <div class="card animate-fade-in">
-            <div class="sec-title"><svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Valores</div>
+            <div class="sec-title"><svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Valores 1</div>
             <div id="edValores"></div>
+            <p class="dica">Em "O que se cobra" e "Inadmissível", <strong>uma linha por item</strong>.</p>
+          </div>
+
+          <div class="card animate-fade-in">
+            <div class="sec-title"><svg class="ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Valores 1.1</div>
+            <div id="edValores11"></div>
             <p class="dica">Em "O que se cobra" e "Inadmissível", <strong>uma linha por item</strong>.</p>
           </div>
 
@@ -682,6 +692,20 @@ const CONTEUDO_PADRAO = {
   missao: 'Transformar o desejo de morar ou investir no litoral em uma decisão que o cliente *entenda*, *confie* e *não se arrependa*.',
   visao: 'Ser a imobiliária *mais confiável* do litoral norte.',
   valores: [
+    { w: 'Atitude',
+      cobra: ['Agir sem esperar ordem quando o problema é seu', 'Trazer solução junto com o problema', 'Puxar a frente quando ninguém quer', 'Energia alta na segunda e no fim do mês'],
+      nao: ['Esperar mandarem fazer o óbvio', 'Reclamar sem propor saída', 'Empurrar o problema para o colega', 'Morno com cliente, morno com meta'] },
+    { w: 'Autenticidade',
+      cobra: ['Opinião dada na reunião, não no corredor', 'Discordar de frente, com respeito', 'Admitir o que não sabe e buscar a resposta', 'Ser o mesmo com cliente, colega e sócio'],
+      nao: ['Vestir personagem para vender', 'Concordar na sala e desfazer no corredor', 'Esconder erro para proteger imagem', 'Fofoca e reclamação pelas costas'] },
+    { w: 'Preparação',
+      cobra: ['Estudar o produto e o cliente antes da reunião', 'Material na mão antes de o cliente pedir', 'Treino levado tão a sério quanto atendimento', 'Prospectar antes de faltar lead'],
+      nao: ['Improvisar na frente do cliente', 'Chegar cru em reunião marcada com antecedência', 'Cliente sabendo mais do produto que o corretor', 'Só correr atrás com o funil seco'] },
+    { w: 'Evolução',
+      cobra: ['Ouvir a correção sem se defender', 'Aplicar o feedback — concordar não conta', 'Buscar ser melhor que o próprio trimestre passado', 'Passar adiante o que aprendeu'],
+      nao: ['Achar que já sabe', 'Receber a mesma correção duas vezes e não mudar', 'Se comparar só com quem está atrás', 'Guardar informação para proteger posição'] }
+  ],
+  valores11: [
     { w: 'Verdadeiros',
       cobra: ['A verdade dita ao cliente antes que ele descubra', 'Defeito e risco na mesa junto com a proposta', 'Funil e números mostrando o que aconteceu de verdade', 'Problema falado na frente da pessoa certa'],
       nao: ['Omitir defeito para fechar', 'Prometer valorização como se fosse certa', 'Maquiar o funil para parecer bem', 'Uma versão para cada ouvido'] },
@@ -1050,6 +1074,15 @@ let syncStatus = 'local';
 const notas = {};
 
 function clonar(o) { return JSON.parse(JSON.stringify(o)); }
+/* gerações anteriores salvas na nuvem/navegador viram o formato novo */
+function migrarValores() {
+  if (conteudo.valores && conteudo.valores[0]) {
+    const w0 = conteudo.valores[0].w;
+    if (w0 === 'Leais') conteudo.valores = clonar(CONTEUDO_PADRAO.valores);
+    if (w0 === 'Verdadeiros') { conteudo.valores11 = conteudo.valores; conteudo.valores = clonar(CONTEUDO_PADRAO.valores); }
+  }
+  if (!Array.isArray(conteudo.valores11) || !conteudo.valores11.length) conteudo.valores11 = clonar(CONTEUDO_PADRAO.valores11);
+}
 function escaparHTML(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 function fmt(s) { return escaparHTML(s).replace(/\*([^*]+)\*/g, '<em>$1</em>'); }
 
@@ -1064,7 +1097,7 @@ function carregar() {
     if (d.nome) estado.nome = d.nome;
     if (Array.isArray(d.enviadas)) estado.enviadas = d.enviadas;
     if (Array.isArray(d.kanban) && d.kanban.length) kanban = d.kanban;
-    if (d.conteudo) conteudo = Object.assign(clonar(CONTEUDO_PADRAO), d.conteudo);
+    if (d.conteudo) { conteudo = Object.assign(clonar(CONTEUDO_PADRAO), d.conteudo); migrarValores(); }
   } catch (e) {}
 }
 
@@ -1128,8 +1161,10 @@ function drawer(abrir) {
 /* ===== enquete ===== */
 function passosDef() {
   return [
-    { tarefa: 'Tarefa 01', nome: 'Valores', intro: 'Quatro palavras, cada uma com a frase que sai da boca do corretor:',
+    { tarefa: 'Tarefa 01', nome: 'Valores 1', intro: 'Primeira proposta de quatro palavras:',
       entrega: () => '<div class="gridval">' + conteudo.valores.map(v => '<div class="valcel"><b>' + escaparHTML(v.w) + '</b></div>').join('') + '</div>' },
+    { tarefa: 'Tarefa 1.1', nome: 'Valores 1.1', intro: 'Segunda proposta — a mesma régua, com outras palavras:',
+      entrega: () => '<div class="gridval">' + (conteudo.valores11 || []).map(v => '<div class="valcel"><b>' + escaparHTML(v.w) + '</b></div>').join('') + '</div>' },
     { tarefa: 'Tarefa 02', nome: 'Missão', intro: 'O que a Nox faz por quem compra:',
       entrega: () => '<p class="frase-hero">' + fmt(conteudo.missao) + '</p>' },
     { tarefa: 'Tarefa 03', nome: 'Visão', intro: 'Onde a Nox quer chegar:',
@@ -1144,6 +1179,7 @@ function passosDef() {
 }
 
 function montarPassos() {
+  const tot = passosDef().length;
   passosDef().forEach((p, i) => {
     const n = i + 1;
     document.getElementById('p' + n).innerHTML =
@@ -1164,7 +1200,7 @@ function montarPassos() {
           '<p class="err" id="e' + n + '">Escolhe uma nota de 1 a 5 pra continuar.</p>' +
           '<div class="acoes">' +
             '<button class="btn btn-ghost" onclick="passo(' + (n - 1) + ')">Voltar</button>' +
-            '<button class="btn btn-pink" onclick="avancar(' + n + ')">' + (n === 4 ? 'Concluir' : 'Próxima') + '</button>' +
+            '<button class="btn btn-pink" onclick="avancar(' + n + ')">' + (n === tot ? 'Concluir' : 'Próxima') + '</button>' +
           '</div>' +
         '</div>' +
       '</div></div>';
@@ -1175,10 +1211,11 @@ function passo(n) {
   document.querySelectorAll('.passo').forEach(p => p.classList.remove('on'));
   document.getElementById('p' + n).classList.add('on');
   const wrap = document.getElementById('progWrap');
-  if (n >= 1 && n <= 4) {
+  const tot = passosDef().length;
+  if (n >= 1 && n <= tot) {
     wrap.style.display = 'flex';
-    document.getElementById('progFill').style.width = (n / 4 * 100) + '%';
-    document.getElementById('progTxt').textContent = 'Tarefa ' + n + ' / 4';
+    document.getElementById('progFill').style.width = (n / tot * 100) + '%';
+    document.getElementById('progTxt').textContent = passosDef()[n - 1].tarefa + ' · ' + n + ' / ' + tot;
   } else wrap.style.display = 'none';
   window.scrollTo({ top: 0 });
 }
@@ -1207,7 +1244,8 @@ function avancar(n) {
     nota: notas[n]
   };
   salvar();
-  if (n < 4) { passo(n + 1); return; }
+  const tot = passosDef().length;
+  if (n < tot) { passo(n + 1); return; }
 
   const envio = { nome: estado.nome, enviadoEm: new Date().toISOString(), respostas: clonar(estado.respostas) };
   estado.enviadas.push(envio);
@@ -1220,7 +1258,7 @@ function avancar(n) {
     '<div class="resumo-l"><span>' + escaparHTML(r.tarefa) + '</span><b>' + r.nota + ' / 5</b></div>').join('') +
     '<div class="resumo-l" style="border-top:1px solid rgba(255,255,255,.12)"><span style="color:#fff;font-weight:600">Média geral</span><b>' + media.toFixed(1).replace('.', ',') + ' / 5</b></div>';
   montarRespostas();
-  passo(5);
+  passo(tot + 1);
 }
 
 function montarRespostas() {
@@ -1266,7 +1304,7 @@ function refazer() {
   estado.nome = '';
   Object.keys(notas).forEach(k => delete notas[k]);
   document.querySelectorAll('.nota').forEach(b => b.classList.remove('sel'));
-  for (let i = 1; i <= 4; i++) { const c = document.getElementById('c' + i); if (c) c.value = ''; }
+  for (let i = 1; i <= passosDef().length; i++) { const c = document.getElementById('c' + i); if (c) c.value = ''; }
   document.getElementById('nome').value = '';
   salvar();
   passo(0);
@@ -1274,10 +1312,16 @@ function refazer() {
 }
 
 /* ===== mvv + metas ===== */
+let valSetMVV = '1';
+function trocarValores(q) { valSetMVV = q; montarMVV(); }
+
 function montarMVV() {
   document.getElementById('mvvMissao').innerHTML = fmt(conteudo.missao);
   document.getElementById('mvvVisao').innerHTML = fmt(conteudo.visao);
-  document.getElementById('mvvValores').innerHTML = conteudo.valores.map((v, i) =>
+  const b1 = document.getElementById('vsetBtn1'), b11 = document.getElementById('vsetBtn11');
+  if (b1) { b1.classList.toggle('on', valSetMVV === '1'); b11.classList.toggle('on', valSetMVV === '11'); }
+  const vs = valSetMVV === '11' ? (conteudo.valores11 || []) : conteudo.valores;
+  document.getElementById('mvvValores').innerHTML = vs.map((v, i) =>
     '<div class="valx" id="valx' + i + '">' +
     '<button class="valx-h" onclick="toggleVal(' + i + ')">' +
       '<span class="n">0' + (i + 1) + '</span><b>' + escaparHTML(v.w) + '</b><span class="chev">&#9654;</span>' +
@@ -1539,6 +1583,18 @@ function montarAdmin() {
     '</div>'
   ).join('');
 
+  document.getElementById('edValores11').innerHTML = (conteudo.valores11 || []).map((v, i) =>
+    '<div class="adm-val">' +
+      '<div class="adm-val-h"><span class="n">0' + (i + 1) + '</span>' +
+        '<input class="inp" id="uw' + i + '" value="' + escaparHTML(v.w) + '" placeholder="Palavra">' +
+      '</div>' +
+      '<div class="adm-2">' +
+        '<div><label class="lbl">O que se cobra</label><textarea class="ta" id="uc' + i + '" style="min-height:78px">' + escaparHTML((v.cobra || []).join('\n')) + '</textarea></div>' +
+        '<div><label class="lbl">Inadmissível</label><textarea class="ta" id="un' + i + '" style="min-height:78px">' + escaparHTML((v.nao || []).join('\n')) + '</textarea></div>' +
+      '</div>' +
+    '</div>'
+  ).join('');
+
   document.getElementById('edMetas').innerHTML = conteudo.metas.map((m, i) =>
     '<div class="adm-val" style="margin:0">' +
       '<label class="lbl">Rótulo</label><input class="inp" id="ml' + i + '" value="' + escaparHTML(m.lbl) + '">' +
@@ -1564,6 +1620,11 @@ function lerFormulario() {
     w: document.getElementById('vw' + i).value.trim(),
     cobra: document.getElementById('vc' + i).value.split('\n').map(s => s.trim()).filter(Boolean),
     nao: document.getElementById('vn' + i).value.split('\n').map(s => s.trim()).filter(Boolean)
+  }));
+  novo.valores11 = (conteudo.valores11 || []).map((v, i) => ({
+    w: document.getElementById('uw' + i).value.trim(),
+    cobra: document.getElementById('uc' + i).value.split('\n').map(s => s.trim()).filter(Boolean),
+    nao: document.getElementById('un' + i).value.split('\n').map(s => s.trim()).filter(Boolean)
   }));
   novo.metas = conteudo.metas.map((m, i) => ({
     lbl: document.getElementById('ml' + i).value.trim(),
@@ -1625,8 +1686,7 @@ if (estado.nome) document.getElementById('nome').value = estado.nome;
 window.noxApp = {
   aplicarConteudo(v) {
     conteudo = Object.assign(clonar(CONTEUDO_PADRAO), v);
-    /* migração: se vier a geração anterior de valores salva na nuvem, assume a nova */
-    if (conteudo.valores && conteudo.valores[0] && conteudo.valores[0].w === 'Leais') conteudo.valores = clonar(CONTEUDO_PADRAO.valores);
+    migrarValores();
     salvar(); redesenharTudo(); if (ehAdmin) montarAdmin();
   },
   aplicarKanban(v) { if (Array.isArray(v) && v.length) { kanban = v; salvar(); montarKanban(); } },
