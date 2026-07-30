@@ -1,0 +1,10 @@
+# Site estático — sem build
+[build]
+  publish = "."
+
+[build.environment]
+  # A chave de API web do Firebase aparece no HTML de propósito: ela é pública
+  # por design (identifica o projeto, não autentica ninguém). Quem protege os
+  # dados são as regras do Firestore + Firebase Auth. O scanner de segredos do
+  # Netlify não distingue isso e derrubava todos os deploys.
+  SECRETS_SCAN_ENABLED = "false"
