@@ -712,18 +712,18 @@ const CONTEUDO_PADRAO = {
       nao: ['Achar que já sabe', 'Receber a mesma correção duas vezes e não mudar', 'Se comparar só com quem está atrás', 'Guardar informação para proteger posição'] }
   ],
   valores11: [
-    { w: 'Verdadeiros',
-      cobra: ['A verdade dita ao cliente antes que ele descubra', 'Defeito e risco na mesa junto com a proposta', 'Funil e números mostrando o que aconteceu de verdade', 'Problema falado na frente da pessoa certa'],
-      nao: ['Omitir defeito para fechar', 'Prometer valorização como se fosse certa', 'Maquiar o funil para parecer bem', 'Uma versão para cada ouvido'] },
-    { w: 'Autênticos',
-      cobra: ['Opinião dada na reunião, não no corredor', 'Discordar de frente, com respeito', 'Admitir o que não sabe e buscar a resposta', 'Ser o mesmo com cliente, colega e sócio'],
-      nao: ['Vestir personagem para vender', 'Concordar na sala e desfazer no corredor', 'Esconder erro para proteger imagem', 'Fofoca e reclamação pelas costas'] },
     { w: 'Estratégicos',
       cobra: ['Estudar o produto e o cliente antes da reunião', 'Sair de todo atendimento com o próximo passo definido', 'Decidir com número na mão, não com achismo', 'Prospectar antes de faltar lead'],
       nao: ['Improvisar na frente do cliente', 'Visita sem objetivo e sem próximo passo', 'Repetir o que não funcionou sem mudar nada', 'Só correr atrás com o funil seco'] },
     { w: 'Comprometidos',
       cobra: ['Retorno ao cliente no prazo prometido', 'Meta perseguida até o último dia do trimestre', 'Combinado cumprido sem precisar de cobrança', 'Presença inteira nos rituais do time'],
-      nao: ['Cliente esperando retorno que não chega', 'Abandonar a meta no meio do caminho', 'Desculpa no lugar de tentativa nova', 'Assumir e sumir'] }
+      nao: ['Cliente esperando retorno que não chega', 'Abandonar a meta no meio do caminho', 'Desculpa no lugar de tentativa nova', 'Assumir e sumir'] },
+    { w: 'Verdadeiros',
+      cobra: ['A verdade dita ao cliente antes que ele descubra', 'Defeito e risco na mesa junto com a proposta', 'Funil e números mostrando o que aconteceu de verdade', 'Problema falado na frente da pessoa certa'],
+      nao: ['Omitir defeito para fechar', 'Prometer valorização como se fosse certa', 'Maquiar o funil para parecer bem', 'Uma versão para cada ouvido'] },
+    { w: 'Inconformados',
+      cobra: ['Incomodar-se com o "sempre foi assim"', 'Tratar meta batida como piso, não como teto', 'Questionar processo que não gera resultado', 'Voltar no cliente que disse não'],
+      nao: ['Aceitar resultado médio como suficiente', 'Se acomodar depois de um mês bom', 'Assistir o funil parado sem se incomodar', 'Desistir no primeiro não'] }
   ],
   metas: [
     { lbl: 'Tri 1 · jul–set/26', valor: 'R$ 14 mi', sub: 'já em andamento', estilo: '' },
@@ -1091,6 +1091,7 @@ function migrarValores() {
     if (w0 === 'Verdadeiros') { conteudo.valores11 = conteudo.valores; conteudo.valores = clonar(CONTEUDO_PADRAO.valores); }
   }
   if (!Array.isArray(conteudo.valores11) || !conteudo.valores11.length) conteudo.valores11 = clonar(CONTEUDO_PADRAO.valores11);
+  if (conteudo.valores11[0] && conteudo.valores11[0].w === 'Verdadeiros') conteudo.valores11 = clonar(CONTEUDO_PADRAO.valores11);
   if (conteudo.visao === 'Ser a imobiliária *mais confiável* do litoral norte.') conteudo.visao = CONTEUDO_PADRAO.visao;
   if (Array.isArray(conteudo.metas) && conteudo.metas.length === 3) conteudo.metas = clonar(CONTEUDO_PADRAO.metas);
   if (Array.isArray(conteudo.metas) && conteudo.metas.length === 6) {
